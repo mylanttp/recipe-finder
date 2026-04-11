@@ -1,0 +1,32 @@
+.searchPage{
+    gap: 24px;
+    justify-content: center;
+}
+
+.pageTitle{
+    font-style:italic;
+}
+
+.searchButton{
+    border: 1px black solid;
+}
+
+.quizButton{
+  border: 1px black solid;
+}
+
+.input{
+    border: 1px black solid;
+    height: 32px;
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.subtext{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
