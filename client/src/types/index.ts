@@ -1,9 +1,8 @@
 export type Recipe = {
-  id: string;
-  title: string;
-  servings?: string;
-  ingredients?: string[];
-  instructions?: string[];
+  id: number
+  title: string
+  image: string
+  imageType: string
 };
 
 export type RecipeList = {

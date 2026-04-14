@@ -7,15 +7,14 @@ import RecipeDisplay from "./components/RecipeDisplay";
 import { Recipe, RecipeList } from "./types";
 
 function Search() {
+    const placeholderList: Recipe[] = [{id: 1, title: "Placeholder", image: "nothing yet", imageType: "jpg"} as Recipe]
     const [search, setSearch] = useState("")
-    const [recipeList, setRecipeList] = useState({list: [{title: "Placeholder"
-                ,ingredients: ["ingredient1", "ingredient2"]} as Recipe]} as RecipeList)
+    const [recipeList, setRecipeList] = useState({list: placeholderList} as RecipeList)
 
    const enterSearch = () => {
         if (search === "") {
             setSearch("What's for lunch?");
-            setRecipeList({list: [{title: "Placeholder"
-                ,ingredients: ["ingredient1", "ingredient2"]} as Recipe]} as RecipeList);
+            setRecipeList({list: placeholderList} as RecipeList);
         } else {
             fetchRecipeList(search)
             .then((res) => setRecipeList(res as RecipeList))

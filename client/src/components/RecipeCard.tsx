@@ -11,14 +11,9 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => (
     <button className="addButton">+</button>
   </div>
 
-  <p>Ingredients:</p>
-  <ul className="ingredients">
-    {recipe.ingredients?.map((ingredient, index) => (
-      <li key={index}>
-        {ingredient}
-      </li>
-    ))}
-  </ul>
+  <div className="imageBox">
+      <img className="recipeImage" src={recipe.image} alt={`${recipe.title} image`}></img>
+  </div>
 
   <div className="footer">
     <button className="seeMore">See more</button>

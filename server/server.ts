@@ -7,7 +7,7 @@ const port = 8080;
 app.use(cors());
 app.use(express.json());
 
-const API_KEY = "idQL83HuEwnrMAw5XIQo3GOtigXOGafRYYVdt6pd";
+const API_KEY = "4adba3f446f748069988bc39df927433";
 
 app.get("/test", (req, res) => {
   res.send("works");
@@ -17,7 +17,7 @@ app.get("/api/search", (req, res) => {
   const body = req.body
   const query = req.query.q
 
-  fetch(`https://api.calorieninjas.com/v1/recipe?query=${query}`,
+  fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=15`,
     {headers: {
         "X-Api-Key": API_KEY,
       },})
