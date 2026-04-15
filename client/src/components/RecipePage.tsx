@@ -1,1 +1,0 @@
-// Page for details for a single recipe

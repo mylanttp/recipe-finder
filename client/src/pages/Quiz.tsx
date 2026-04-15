@@ -1,3 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
+export default function Quiz() {
+    const navigate = useNavigate();
+    return <div>
+        <h2>Quiz Page</h2>
+        <button onClick={() => navigate('/')}>back to search</button>
+    </div>
+}
+
 // Page for the quiz
 
 // Array of ints representing different qualities

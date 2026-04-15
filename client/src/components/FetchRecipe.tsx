@@ -1,26 +1,5 @@
 import { Recipe, RecipeList } from "../types";
 
-/*
-type RecipeData = {
-  id: number
-  title: string
-  image: string
-  imageType: string
-}
-
-const toRecipeDataToRecipe = (data: RecipeData): Recipe => {
-  const ingredientsList = data.ingredients.split("|").map(item => item.trim());
-  const instructionsList = data.instructions.split(". ").map(item => item.trim());
-
-  return {
-    id: data.title,
-    title: data.title,
-    servings: data.servings,
-    ingredients: ingredientsList as string[],
-    instructions: instructionsList as string[],
-  }
-}
-  */
 type apiResponse = {
   results: Recipe[]
 

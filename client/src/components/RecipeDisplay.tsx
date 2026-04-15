@@ -1,5 +1,6 @@
 import { Recipe, RecipeList } from "../types";
 import RecipeCard from "./RecipeCard";
+import "../styles/recipeCardStyle.css"
 
 
 type RecipeListProps = {
