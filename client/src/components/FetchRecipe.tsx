@@ -1,16 +1,16 @@
-import { Recipe, RecipeList } from "../types";
+import { Recipe } from "../types";
 
 type apiResponse = {
   results: Recipe[]
 
 }
 
-const toRecipeList = (dataList: apiResponse): RecipeList => {
+const toRecipeList = (dataList: apiResponse): Recipe[] => {
   const recipes: Recipe[] = dataList.results;
-  return {list: recipes} as RecipeList;
+  return recipes as Recipe[];
 }
 
-export const fetchRecipeList = (search: string): Promise<RecipeList> => {
+export const fetchRecipeList = (search: string): Promise<Recipe[]> => {
   return fetch(`http://localhost:8080/api/search?q=${encodeURIComponent(search)}`,
   )
   .then((response) => {

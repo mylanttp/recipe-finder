@@ -1,31 +1,28 @@
 import { useState } from "react";
-import "../styles/searchStyle.css"
-import { fetchRecipeList } from "./FetchRecipe";
-import RecipeDisplay from "./RecipeDisplay";
-import { Recipe, RecipeList } from "../types";
+import "../../styles/searchStyle.css"
+import { fetchRecipeList } from "../../components/FetchRecipe";
+import RecipeDisplay from "../../components/RecipeDisplay";
+import { Recipe } from "../../types";
 import { useNavigate } from "react-router-dom";
 
-function Search() {
-    const [search, setSearch] = useState("")
-    const [recipeList, setRecipeList] = useState({
-        list: [{
-            id: 1,
-            title: "Placeholder",
-            image: "nothing yet",
-            imageType: "jpg"} as Recipe
-        ]} as RecipeList)
-    const navigate = useNavigate()
+type searchProps = {
+    addRecipe: (recipe: Recipe) => Promise<boolean>
+}
 
+function Search({addRecipe}: searchProps) {
     const placeholderList: Recipe[] = [{id: 1, title: "Placeholder", image: "nothing yet", imageType: "jpg"} as Recipe]
 
+    const [search, setSearch] = useState("")
+    const [recipeList, setRecipeList] = useState(placeholderList as Recipe[])
+    const navigate = useNavigate()
 
    const enterSearch = () => {
         if (search === "") {
             setSearch("What's for lunch?");
-            setRecipeList({list: placeholderList} as RecipeList);
+            setRecipeList(placeholderList as Recipe[]);
         } else {
             fetchRecipeList(search)
-            .then((res) => setRecipeList(res as RecipeList))
+            .then((res) => setRecipeList(res as Recipe[]))
             .catch((err) => console.error(err))
         }
     };
@@ -44,8 +41,9 @@ function Search() {
                 <p>OR</p>
                 <button className="quizButton" onClick={() => navigate('/quiz')}>Take a quiz to see which recipe you are!</button>
             </div>
+            <button className="mealButton" onClick={() => navigate('/myMeals')}>MyMeals</button>
             <hr className="divider" />
-            <RecipeDisplay recipeList={recipeList}/>
+            <RecipeDisplay recipeList={recipeList} onAdd={addRecipe}/>
         </>
         
     );

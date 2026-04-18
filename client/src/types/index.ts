@@ -4,7 +4,3 @@ export type Recipe = {
   image: string
   imageType: string
 };
-
-export type RecipeList = {
-  list: Recipe[]
-};

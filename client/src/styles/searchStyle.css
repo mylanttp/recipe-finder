@@ -3,7 +3,14 @@
 }
 
 .quizButton{
-  border: 1px black solid;
+    border: 1px black solid;
+}
+
+.mealButton{
+    border: 1px black solid;
+    position: 'absolute';
+    top: 0;
+    right: 0
 }
 
 .input{
