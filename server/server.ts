@@ -43,15 +43,15 @@ app.listen(port, () => {
 
 // POST what information do i need to send to the server?
 app.post("/add", async (req, res) =>  {
-  console.log(req.body)
+  console.log("added " + req.body)
   const recipe = req.body.recipe
-  console.log(recipe.id) 
+  console.log(recipe.title) 
   try{
     await db.collection('savedRecipes').doc(String(recipe.id)).set(recipe)
     res.send(`Recipe "${recipe.title}" added`);
   } catch (err) {
     console.log(err)
-    res.status(500).json({ error: "Recipe unable to be added"})
+    res.status(500).json({ error: `Recipe ${recipe.title} unable to be added`})
   }
 });
 
@@ -63,8 +63,15 @@ app.put('/meal-plan/change/:recipe', (req, res) => {
 });
 
 // DELETE what information do i need to delete?
-app.delete('/meal-plan/delete/:recipe', (req, res) => {
+app.delete('/remove', async (req, res) => {
+  console.log("deleted " + req.body)
   const recipe = req.body.recipe
-  // lets the user delete a recipe they have in their meal plan
-  res.send(`Placeholder DELETE request ${recipe}`);
+  console.log(recipe.id) 
+  try{
+    await db.collection('savedRecipes').doc(String(recipe.id)).delete(recipe)
+    res.send(`Recipe "${recipe.title}" deleted`);
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: `Recipe ${recipe.title} unable to be deleted`})
+  }
 });

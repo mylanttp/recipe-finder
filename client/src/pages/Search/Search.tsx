@@ -7,16 +7,17 @@ import { useNavigate } from "react-router-dom";
 
 type searchProps = {
     addRecipe: (recipe: Recipe) => Promise<boolean>
+    removeRecipe: (recipe: Recipe) => Promise<boolean>
 }
 
-function Search({addRecipe}: searchProps) {
+function Search({addRecipe, removeRecipe}: searchProps) {
     const placeholderList: Recipe[] = [{id: 1, title: "Placeholder", image: "nothing yet", imageType: "jpg"} as Recipe]
 
     const [search, setSearch] = useState("")
     const [recipeList, setRecipeList] = useState(placeholderList as Recipe[])
     const navigate = useNavigate()
-
-   const enterSearch = () => {
+    
+    const enterSearch = () => {
         if (search === "") {
             setSearch("What's for lunch?");
             setRecipeList(placeholderList as Recipe[]);
@@ -43,7 +44,7 @@ function Search({addRecipe}: searchProps) {
             </div>
             <button className="mealButton" onClick={() => navigate('/myMeals')}>MyMeals</button>
             <hr className="divider" />
-            <RecipeDisplay recipeList={recipeList} onAdd={addRecipe}/>
+            <RecipeDisplay recipeList={recipeList} onAdd={addRecipe} onRemove={removeRecipe}/>
         </>
         
     );

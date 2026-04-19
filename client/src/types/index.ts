@@ -3,4 +3,5 @@ export type Recipe = {
   title: string
   image: string
   imageType: string
+  saved: boolean
 };
