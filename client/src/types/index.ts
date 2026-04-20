@@ -5,3 +5,9 @@ export type Recipe = {
   imageType: string
   saved: boolean
 };
+
+export type RecipeContextProps = {
+  myRecipeList: Recipe[]
+  onAdd: (recipe: Recipe) => Promise<boolean>
+  onRemove: (recipe: Recipe) => Promise<boolean>
+}

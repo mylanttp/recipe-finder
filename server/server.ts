@@ -47,7 +47,7 @@ app.post("/add", async (req, res) =>  {
   const recipe = req.body.recipe
   console.log(recipe.title) 
   try{
-    await db.collection('savedRecipes').doc(String(recipe.id)).set(recipe)
+    const doc = await db.collection('savedRecipes').doc(String(recipe.id)).set(recipe)
     res.send(`Recipe "${recipe.title}" added`);
   } catch (err) {
     console.log(err)

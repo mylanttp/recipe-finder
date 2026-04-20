@@ -2,21 +2,19 @@ import { Recipe } from "../types";
 import RecipeCard from "./RecipeCard";
 import "../styles/recipeCardStyle.css"
 
-
 type RecipeListProps = {
     recipeList: Recipe[]
-    onAdd: (recipe: Recipe) => Promise<boolean>
-    onRemove: (recipe: Recipe) => Promise<boolean>
 }
 
-const RecipeDisplay = ({recipeList, onAdd, onRemove}: RecipeListProps) => {
+const RecipeDisplay = ({recipeList}: RecipeListProps) => {
     return (
     <div className='recipeContainer'>
-      {recipeList.map((recipe: Recipe) => (
-        <div className='recipeCard' key={recipe.id}>
-          <RecipeCard recipe={recipe} onAdd={onAdd} onRemove={onRemove}/>
-        </div>
-      ))}
+      {recipeList.length > 0 &&
+        recipeList.map((recipe: Recipe) => (
+          <div className='recipeCard' key={recipe.id}>
+            <RecipeCard recipe={recipe}/>
+          </div>
+        ))}
     </div>
   );
 };

@@ -4,14 +4,13 @@ import "./styles/App.css";
 import Quiz from "./pages/Quiz/Quiz";
 import MyMeals from "./pages/MyMeals/MyMeals";
 import { Recipe } from "./types";
-import { useState } from "react";
+import React, { useState } from "react";
+import { RecipeContext } from "./RecipeContext";
 
 function App() {
-    const placeholderList: Recipe[] = [{id: 1, title: "Placeholder", image: "nothing yet", imageType: "jpg"} as Recipe]
-    const [myRecipeList, setMyRecipeList] = useState(placeholderList as Recipe[])
-
+    const [myRecipeList, setMyRecipeList] = useState([] as Recipe[])
+    
     const addRecipe = (recipe: Recipe): Promise<boolean> => {
-
         return fetch("http://localhost:8080/add", {
             method: "POST",
             headers: {
@@ -21,7 +20,8 @@ function App() {
         })
         .then(() => {
             if(!myRecipeList.some(r => r.id === recipe.id)){
-              setMyRecipeList([...myRecipeList, recipe])
+                recipe.saved = true;
+                setMyRecipeList([...myRecipeList, recipe])
             }
             return true;
         })
@@ -30,7 +30,7 @@ function App() {
         })
     };
 
-     const removeRecipe = (recipe: Recipe): Promise<boolean> => {
+        const removeRecipe = (recipe: Recipe): Promise<boolean> => {
         return fetch("http://localhost:8080/remove", {
             method: "DELETE",
             headers: {
@@ -39,6 +39,7 @@ function App() {
             body: JSON.stringify({recipe})
         })
         .then(() => {
+            recipe.saved = false;
             setMyRecipeList(myRecipeList.filter(r => r.id != recipe.id))
             return true;
         })
@@ -47,23 +48,18 @@ function App() {
         })
     };
     
-
-  return (
-    <div className="appLayout">
-    <h1 className="pageTitle">Recipe Finder!</h1>
-
-    <Routes>
-        <Route path="/" element={<Search 
-          addRecipe={addRecipe}
-          removeRecipe={removeRecipe}/>} />
-        <Route path="/quiz" element={<Quiz />} />
-        <Route path="/myMeals" element={<MyMeals 
-          myRecipeList={myRecipeList}
-          addRecipe={addRecipe}
-          removeRecipe={removeRecipe}/>} />
-    </Routes>
-    </div>
-  );
+    return (
+    <RecipeContext.Provider value={{myRecipeList: myRecipeList, onAdd: addRecipe, onRemove: removeRecipe}}>
+        <div className="appLayout">
+            <h1 className="pageTitle">Recipe Finder!</h1>
+            <Routes>
+                <Route path="/" element={<Search />} />
+                <Route path="/quiz" element={<Quiz />} />
+                <Route path="/myMeals" element={<MyMeals />} />
+            </Routes>
+        </div>
+    </RecipeContext.Provider>
+    );
 }
 
 export default App;

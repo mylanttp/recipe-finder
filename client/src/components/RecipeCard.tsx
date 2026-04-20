@@ -1,28 +1,28 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { RecipeContext } from "../RecipeContext";
 import { Recipe } from "../types";
 
 type RecipeCardProps = {
   recipe: Recipe;
-  onAdd: (recipe: Recipe) => Promise<boolean>
-  onRemove: (recipe: Recipe) => Promise<boolean>
 };
 
-const RecipeCard = ({recipe, onAdd, onRemove}: RecipeCardProps) => {
-  const [add, setAdd] = useState(true);
+const RecipeCard = ({recipe}: RecipeCardProps) => {
+  const recipeInfo = useContext(RecipeContext);
+
   const addOrRemove = () => {
-    if(add){
-      onAdd(recipe)
-      setAdd(false)
+    if(!recipe.saved){
+      recipeInfo.onAdd(recipe)
     } else {
-      onRemove(recipe)
-      setAdd(true)
+      recipeInfo.onRemove(recipe)      
     }
+    recipe.saved = !recipe.saved
   }
 
   return <div>
       <div className="header">
         <p className="recipeTitle">{recipe.title}</p>
-        <button className="addButton" onClick={() => addOrRemove()}>+</button>
+        <button className={!recipe.saved? "addButton" : "removeButton"} 
+          onClick={() => addOrRemove()}>{!recipe.saved? "+" : "-"}</button>
       </div>
 
       <div className="imageBox">

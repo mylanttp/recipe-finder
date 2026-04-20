@@ -1,21 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import RecipeDisplay from "../../components/RecipeDisplay";
-import { Recipe } from "../../types";
+import { useContext } from "react";
+import { RecipeContext } from "../../RecipeContext";
 
-type myMealsProps = {
-    myRecipeList: Recipe[],
-    addRecipe: (recipe: Recipe) => Promise<boolean>
-    removeRecipe: (recipe: Recipe) => Promise<boolean>
-}
-
-export default function MyMeals({myRecipeList, addRecipe, removeRecipe}: myMealsProps) {
+export default function MyMeals() {
     const navigate = useNavigate();
+    const recipeInfo = useContext(RecipeContext);
 
     return ( 
         <div>
             <h2>MyMeals Page</h2>
             <button onClick={() => navigate('/')}>back to search</button>
-            <RecipeDisplay recipeList={myRecipeList} onAdd={addRecipe} onRemove={removeRecipe}/>
+            {recipeInfo.myRecipeList.length === 0 && <p>No meals saved yet!</p>}
+            <RecipeDisplay recipeList={recipeInfo.myRecipeList}/>
         </div> 
     )
 }

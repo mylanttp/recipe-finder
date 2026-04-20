@@ -5,28 +5,22 @@ import RecipeDisplay from "../../components/RecipeDisplay";
 import { Recipe } from "../../types";
 import { useNavigate } from "react-router-dom";
 
-type searchProps = {
-    addRecipe: (recipe: Recipe) => Promise<boolean>
-    removeRecipe: (recipe: Recipe) => Promise<boolean>
-}
-
-function Search({addRecipe, removeRecipe}: searchProps) {
-    const placeholderList: Recipe[] = [{id: 1, title: "Placeholder", image: "nothing yet", imageType: "jpg"} as Recipe]
+function Search() {
 
     const [search, setSearch] = useState("")
-    const [recipeList, setRecipeList] = useState(placeholderList as Recipe[])
+    const [recipeList, setRecipeList] = useState([] as Recipe[])
     const navigate = useNavigate()
     
     const enterSearch = () => {
         if (search === "") {
             setSearch("What's for lunch?");
-            setRecipeList(placeholderList as Recipe[]);
+            setRecipeList([] as Recipe[]);
         } else {
             fetchRecipeList(search)
             .then((res) => setRecipeList(res as Recipe[]))
             .catch((err) => console.error(err))
         }
-    };
+    }
 
     return (
         <>
@@ -44,7 +38,8 @@ function Search({addRecipe, removeRecipe}: searchProps) {
             </div>
             <button className="mealButton" onClick={() => navigate('/myMeals')}>MyMeals</button>
             <hr className="divider" />
-            <RecipeDisplay recipeList={recipeList} onAdd={addRecipe} onRemove={removeRecipe}/>
+            {recipeList.length === 0 && <p>Search!</p>}
+            <RecipeDisplay recipeList={recipeList}/>
         </>
         
     );

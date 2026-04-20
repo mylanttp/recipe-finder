@@ -3,6 +3,7 @@ import { QuestionCard } from "./QuestionCard";
 import { Question } from "./quizTypes";
 import { quiz1 } from "../../constants/quiz1";
 import { useState } from "react";
+import { Result } from "./Result";
 
 export default function Quiz() {
     const navigate = useNavigate();
@@ -15,7 +16,9 @@ export default function Quiz() {
         <li key={question.title}>
           <QuestionCard question={question} onSet={setResults}/>
         </li>
-      ))}
+        ))}
+        {}
+        <Result results={results}/>
     </div>
 }
 

@@ -56,6 +56,13 @@
   padding: 6px 9px;
 }
 
+.removeButton{
+  border: 1px black solid;
+  background-color: #e3d1cc;
+  font-size: 15px;
+  padding: 6px 9px;
+}
+
 .seeMore{
   border: 1px black solid;
   background-color: #dedede;
