@@ -1,3 +1,4 @@
 server/service_account.json
 node_modules/
 client/.env
+server/.env

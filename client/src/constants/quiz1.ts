@@ -2,16 +2,25 @@ import { Question } from "../pages/Quiz/quizTypes";
 
 export const quiz1: Question[] = [
     {
-        title: "What is your favorite way to spend your free time?",
+        title: "How do you like to spend your free time?",
         answers: [
             {title: "hang out with friends", image: "nothing yet", impact: [1,0,0,0]},
             {title: "cozy up with a good book", image: "nothing yet", impact: [0,1,0,0]},
             {title: "hit the gym", image: "nothing yet", impact: [0,0,1,0]},
-            {title: "what free time???", image: "nothing yet", impact: [0,0,0,1]}
+            {title: "What free time???", image: "nothing yet", impact: [0,0,0,1]}
         ]
     },
     {
-        title: "Question 2",
+        title: "If you could have any superpower what would it be?",
+        answers: [
+            {title: "Invisibility", image: "nothing yet", impact: [1,0,0,0]},
+            {title: "Mind Control", image: "nothing yet", impact: [0,1,0,0]},
+            {title: "Super Strength", image: "nothing yet", impact: [0,0,1,0]},
+            {title: "Flying", image: "nothing yet", impact: [0,0,0,1]}
+        ]
+    },
+    {
+        title: "You're stranded on a desert island, what item could you not live without?.",
         answers: [
             {title: "answer 1", image: "nothing yet", impact: [1,0,0,0]},
             {title: "answer 2", image: "nothing yet", impact: [0,1,0,0]},
@@ -20,75 +29,57 @@ export const quiz1: Question[] = [
         ]
     },
     {
-        title: "Question 3.",
+        title: "If you could travel anywhere, where would you go?",
         answers: [
-            {title: "answer 1", image: "nothing yet", impact: [1,0,0,0]},
-            {title: "answer 2", image: "nothing yet", impact: [0,1,0,0]},
-            {title: "answer 3", image: "nothing yet", impact: [0,0,1,0]},
-            {title: "answewr 4", image: "nothing yet", impact: [0,0,0,1]}
+            {title: "Italy", image: "nothing yet", impact: [1,0,0,0]},
+            {title: "Japan", image: "nothing yet", impact: [0,1,0,0]},
+            {title: "Eygpt", image: "nothing yet", impact: [0,0,1,0]},
+            {title: "Costa Rica", image: "nothing yet", impact: [0,0,0,1]}
         ]
     },
     {
-        title: "Question 4",
+        title: "What's your biggest fear?",
         answers: [
-            {title: "answer 1", image: "nothing yet", impact: [1,0,0,0]},
-            {title: "answer 2", image: "nothing yet", impact: [0,1,0,0]},
-            {title: "answer 3", image: "nothing yet", impact: [0,0,1,0]},
-            {title: "answewr 4", image: "nothing yet", impact: [0,0,0,1]}
+            {title: "Spiders", image: "nothing yet", impact: [1,0,0,0]},
+            {title: "The ocean", image: "nothing yet", impact: [0,1,0,0]},
+            {title: "Dying alone", image: "nothing yet", impact: [0,0,1,0]},
+            {title: "Heights", image: "nothing yet", impact: [0,0,0,1]}
         ]
     },
     {
-        title: "Question 5",
+        title: "Choose a spirit animal",
         answers: [
-            {title: "answer 1", image: "nothing yet", impact: [1,0,0,0]},
-            {title: "answer 2", image: "nothing yet", impact: [0,1,0,0]},
-            {title: "answer 3", image: "nothing yet", impact: [0,0,1,0]},
-            {title: "answewr 4", image: "nothing yet", impact: [0,0,0,1]}
+            {title: "Golden retriever", image: "nothing yet", impact: [1,0,0,0]},
+            {title: "Butterfly", image: "nothing yet", impact: [0,1,0,0]},
+            {title: "Raccoon", image: "nothing yet", impact: [0,0,1,0]},
+            {title: "Platypus", image: "nothing yet", impact: [0,0,0,1]}
         ]
     },
     {
-        title: "Question 6.",
+        title: "What's always in your bag",
         answers: [
-            {title: "answer 1", image: "nothing yet", impact: [1,0,0,0]},
-            {title: "answer 2", image: "nothing yet", impact: [0,1,0,0]},
-            {title: "answer 3", image: "nothing yet", impact: [0,0,1,0]},
-            {title: "answewr 4", image: "nothing yet", impact: [0,0,0,1]}
+            {title: "Chapstick", image: "nothing yet", impact: [1,0,0,0]},
+            {title: "Tissues", image: "nothing yet", impact: [0,1,0,0]},
+            {title: "Money", image: "nothing yet", impact: [0,0,1,0]},
+            {title: "Nothing", image: "nothing yet", impact: [0,0,0,1]}
         ]
     },
     {
-        title: "Question 7",
+        title: "What would you do if you had 24 hours left to live?",
         answers: [
-            {title: "answer 1", image: "nothing yet", impact: [1,0,0,0]},
-            {title: "answer 2", image: "nothing yet", impact: [0,1,0,0]},
-            {title: "answer 3", image: "nothing yet", impact: [0,0,1,0]},
-            {title: "answewr 4", image: "nothing yet", impact: [0,0,0,1]}
+            {title: "Go skydiving", image: "nothing yet", impact: [1,0,0,0]},
+            {title: "Eat at an unlimited buffet", image: "nothing yet", impact: [0,1,0,0]},
+            {title: "Stay home and cry", image: "nothing yet", impact: [0,0,1,0]},
+            {title: "Travel as far as the next flight takes you.", image: "nothing yet", impact: [0,0,0,1]}
         ]
     },
     {
-        title: "Question 8",
+        title: "Pick the emoji that speaks to you",
         answers: [
-            {title: "answer 1", image: "nothing yet", impact: [1,0,0,0]},
-            {title: "answer 2", image: "nothing yet", impact: [0,1,0,0]},
-            {title: "answer 3", image: "nothing yet", impact: [0,0,1,0]},
-            {title: "answewr 4", image: "nothing yet", impact: [0,0,0,1]}
-        ]
-    },
-    {
-        title: "Question 9",
-        answers: [
-            {title: "answer 1", image: "nothing yet", impact: [1,0,0,0]},
-            {title: "answer 2", image: "nothing yet", impact: [0,1,0,0]},
-            {title: "answer 3", image: "nothing yet", impact: [0,0,1,0]},
-            {title: "answewr 4", image: "nothing yet", impact: [0,0,0,1]}
-        ]
-    },
-    {
-        title: "Question 10",
-        answers: [
-            {title: "answer 1", image: "nothing yet", impact: [1,0,0,0]},
-            {title: "answer 2", image: "nothing yet", impact: [0,1,0,0]},
-            {title: "answer 3", image: "nothing yet", impact: [0,0,1,0]},
-            {title: "answewr 4", image: "nothing yet", impact: [0,0,0,1]}
+            {title: "Sparkle", image: "nothing yet", impact: [1,0,0,0]},
+            {title: "Dancer", image: "nothing yet", impact: [0,1,0,0]},
+            {title: "House", image: "nothing yet", impact: [0,0,1,0]},
+            {title: "Helicopter", image: "nothing yet", impact: [0,0,0,1]}
         ]
     },
 ];

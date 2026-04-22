@@ -1,4 +1,5 @@
 import RecipeDisplay from "../../components/RecipeDisplay";
+import "../../styles/recipeCardStyle.css"
 
 type ResultProp = {
   results: number[]

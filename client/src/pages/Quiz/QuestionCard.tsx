@@ -1,5 +1,6 @@
 import { SetStateAction, useState } from "react"
 import { Question, Answer } from "./quizTypes"
+import "../../styles/quizStyle.css"
 
 type QuestionCardProp = {
   question: Question
@@ -18,12 +19,12 @@ export const QuestionCard = ({question, onSet}: QuestionCardProp) => {
   return <div className="questionContainer">
     <h4>{question.title}</h4>
     <div className="answers">
-    {question.answers.map((answer: Answer) => (
-      <li className="answer" key={answer.title}>
-        <button onClick={() => handleAnswer(answer)
-          }>{answer.title}</button>
-      </li>
-    ))}
-  </div>
+      {question.answers.map((answer: Answer) => (
+        <div className="answer" key={answer.title}>
+          <button onClick={() => handleAnswer(answer)
+            }>{answer.title}</button>
+        </div>
+      ))}
+    </div>
   </div>
 }

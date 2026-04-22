@@ -4,18 +4,44 @@ import "./styles/App.css";
 import Quiz from "./pages/Quiz/Quiz";
 import MyMeals from "./pages/MyMeals/MyMeals";
 import { Recipe } from "./types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RecipeContext } from "./RecipeContext";
 import AuthUserProvider from "./auth/AuthUserProvider";
 import Header from "./components/Header";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-function App() {
+function App () {
     const [myRecipeList, setMyRecipeList] = useState([] as Recipe[])
+
+    useEffect(() => {
+        const auth = getAuth();
+
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const token = await user.getIdToken();
+                const res = await fetch("http://localhost:8080/recipes", {
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                const data = await res.json();
+                setMyRecipeList(data);
+            } else {
+                setMyRecipeList([]);
+            }
+        });
+
+        return () => unsubscribe(); // cleanup on unmount
+    }, []);
+
     
-    const addRecipe = (recipe: Recipe): Promise<boolean> => {
+    const addRecipe = async (recipe: Recipe): Promise<boolean> => {
+        const auth = getAuth()
+        const currentUser = auth.currentUser;
+        const token = currentUser ? await currentUser.getIdToken() : null;
+
         return fetch("http://localhost:8080/add", {
             method: "POST",
             headers: {
+                ...(token && {"Authorization": `Bearer ${token}`}),
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({recipe})
@@ -32,10 +58,15 @@ function App() {
         })
     };
 
-        const removeRecipe = (recipe: Recipe): Promise<boolean> => {
+    const removeRecipe = async (recipe: Recipe): Promise<boolean> => {
+        const auth = getAuth()
+        const currentUser = auth.currentUser;
+        const token = currentUser ? await currentUser.getIdToken() : null;
+        
         return fetch("http://localhost:8080/remove", {
             method: "DELETE",
             headers: {
+                ...(token && { "Authorization": `Bearer ${token}` }),
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({recipe})
