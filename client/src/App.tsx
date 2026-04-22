@@ -4,8 +4,10 @@ import "./styles/App.css";
 import Quiz from "./pages/Quiz/Quiz";
 import MyMeals from "./pages/MyMeals/MyMeals";
 import { Recipe } from "./types";
-import React, { useState } from "react";
+import { useState } from "react";
 import { RecipeContext } from "./RecipeContext";
+import AuthUserProvider from "./auth/AuthUserProvider";
+import Header from "./components/Header";
 
 function App() {
     const [myRecipeList, setMyRecipeList] = useState([] as Recipe[])
@@ -49,16 +51,18 @@ function App() {
     };
     
     return (
-    <RecipeContext.Provider value={{myRecipeList: myRecipeList, onAdd: addRecipe, onRemove: removeRecipe}}>
-        <div className="appLayout">
-            <h1 className="pageTitle">Recipe Finder!</h1>
-            <Routes>
-                <Route path="/" element={<Search />} />
-                <Route path="/quiz" element={<Quiz />} />
-                <Route path="/myMeals" element={<MyMeals />} />
-            </Routes>
-        </div>
-    </RecipeContext.Provider>
+        <AuthUserProvider>
+            <RecipeContext.Provider value={{myRecipeList: myRecipeList, onAdd: addRecipe, onRemove: removeRecipe}}>
+                <Header/>
+                <div>
+                    <Routes>
+                        <Route path="/" element={<Search />} />
+                        <Route path="/quiz" element={<Quiz />} />
+                        <Route path="/myMeals" element={<MyMeals />} />
+                    </Routes>
+                </div>
+            </RecipeContext.Provider>
+        </AuthUserProvider>
     );
 }
 
