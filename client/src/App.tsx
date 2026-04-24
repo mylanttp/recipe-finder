@@ -9,29 +9,42 @@ import { RecipeContext } from "./RecipeContext";
 import AuthUserProvider from "./auth/AuthUserProvider";
 import Header from "./components/Header";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDiets, getIntolerances } from "./components/HandlePreferences";
 
 function App () {
-    const [myRecipeList, setMyRecipeList] = useState([] as Recipe[])
+    const [myRecipeList, setMyRecipeList] = useState<Recipe []>([])
+    const [diets, setDiets] = useState<string[]>([]); 
+    const [intolerances, setIntolerances] = useState<string[]>([]); 
+    const [displayIntolerances, setDisplayIntolerances] = useState(intolerances);
+    const [displayDiets, setDisplayDiets] = useState(diets);
+
 
     useEffect(() => {
         const auth = getAuth();
 
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            if (user) {
+            if (user) { //if a user is logged in, set their saved meals, diets, & intolerances from the DB
                 const token = await user.getIdToken();
                 const res = await fetch("http://localhost:8080/recipes", {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();
                 setMyRecipeList(data);
+                setDiets(await getDiets());
+                setIntolerances(await getIntolerances());
+                setDisplayDiets(await getDiets());
+                setDisplayIntolerances(await getIntolerances());
             } else {
                 setMyRecipeList([]);
+                setDiets([]);
+                setIntolerances([]);
+                setDisplayDiets([]);
+                setDisplayIntolerances([]);
             }
         });
 
         return () => unsubscribe(); // cleanup on unmount
-    }, []);
-
+    }, []); // run once
     
     const addRecipe = async (recipe: Recipe): Promise<boolean> => {
         const auth = getAuth()
@@ -49,7 +62,7 @@ function App () {
         .then(() => {
             if(!myRecipeList.some(r => r.id === recipe.id)){
                 recipe.saved = true;
-                setMyRecipeList([...myRecipeList, recipe])
+                setMyRecipeList([...myRecipeList, recipe]) // spreads
             }
             return true;
         })
@@ -73,17 +86,20 @@ function App () {
         })
         .then(() => {
             recipe.saved = false;
-            setMyRecipeList(myRecipeList.filter(r => r.id != recipe.id))
+            setMyRecipeList(myRecipeList.filter(r => r.id != recipe.id)) //removes the recipe with the matching id
             return true;
         })
         .catch( () => {
             return false;
         })
     };
-    
+
     return (
         <AuthUserProvider>
-            <RecipeContext.Provider value={{myRecipeList: myRecipeList, onAdd: addRecipe, onRemove: removeRecipe}}>
+            <RecipeContext.Provider value={{myRecipeList: myRecipeList, onAdd: addRecipe, onRemove: removeRecipe,
+                                            diets: diets, intolerances: intolerances, setDiets: setDiets, setIntolerances: setIntolerances,
+                                            displayDiets: displayDiets, displayIntolerances: displayIntolerances,
+                                            setDisplayDiets: setDisplayDiets, setDisplayIntolerances: setDisplayIntolerances,}}>
                 <Header/>
                 <div>
                     <Routes>

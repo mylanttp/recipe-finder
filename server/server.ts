@@ -3,6 +3,7 @@ import cors from "cors";
 import { db } from "./firebase";
 import 'dotenv/config';
 import admin from 'firebase-admin';
+import { FieldValue } from "firebase-admin/firestore";
 
 const SPOONACULAR_API_KEY = process.env.SPOONACULAR_API_KEY!;
 
@@ -12,14 +13,22 @@ const port = 8080;
 app.use(cors());
 app.use(express.json());
 
+// test
 app.get("/test", (req, res) => {
   res.send("works");
 });
 
+// get search results from spoonacular
 app.get("/api/search", (req, res) => {
   const query = req.query.q
+  const diet = req.query.diet
+  const intolerances = req.query.intolerances
 
-  fetch(`https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=15`,
+  let url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=15`
+  if(diet){url+=`&diet=${diet}`};
+  if(intolerances){url+=`&intolerances=${intolerances}`}
+
+  fetch(url,
     {headers: {
         "X-Api-Key": SPOONACULAR_API_KEY,
       },})
@@ -37,6 +46,7 @@ app.get("/api/search", (req, res) => {
     });
 });
 
+// get a specific users saved recipes from the database
 app.get('/recipes', async (req, res) => {
     const token = req.headers.authorization?.split('Bearer ')[1];
     if (!token) return res.json([]);
@@ -45,16 +55,57 @@ app.get('/recipes', async (req, res) => {
         const decoded = await admin.auth().verifyIdToken(token);
         const snapshot = await db.collection('users').doc(decoded.uid)
                                   .collection('savedRecipes').get();
-        const recipes = snapshot.docs.map(doc => doc.data());
-        res.json(recipes);
+        const recipes = snapshot.docs.map(doc => doc.data()); //extracts the data inside each firebase doc
+        res.json(recipes); //sends the recipes back as a json
     } catch (err) {
         res.status(500).json({ error: 'Unable to fetch recipes' });
     }
 });
 
-app.post("/add", async (req, res) =>  {
-  console.log("tried to add")
+// get a specific users diets from the data base
+app.get('/get/diets', async (req, res) => {
+  const token = req.headers.authorization?.split('Bearer ')[1];
 
+  if (!token) {
+      return res.send('No user logged in, skipping DB diet add');
+  }
+
+  try{
+    const decoded = await admin.auth().verifyIdToken(token);
+
+    const snapshot = await db.collection('users').doc(decoded.uid).get();
+    const diets = (snapshot.exists? snapshot.get("diets") : []);
+    res.json(diets)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: `Failed to add diets`})
+  }
+});
+
+// get a specific users intolerances from the data base
+app.get('/get/intolerances', async (req, res) => {
+  console.log("backend getIntolerances")
+
+  const token = req.headers.authorization?.split('Bearer ')[1];
+
+  if (!token) {
+      return res.send('No user logged in, skipping DB intolerance add');
+  }
+
+  try{
+    const decoded = await admin.auth().verifyIdToken(token);
+
+    const snapshot = await db.collection('users').doc(decoded.uid).get();
+    const intolerances = (snapshot.exists? snapshot.get("intolerances") : []);
+    res.json(intolerances)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: `Failed to add intolerances`})
+  }
+});
+
+// add a recipe to a specific users saved recipes in the database
+app.post("/add", async (req, res) =>  {
   const token = req.headers.authorization?.split('Bearer ')[1];
   if (!token) {
       return res.send('No user logged in, skipping DB add');
@@ -75,12 +126,53 @@ app.post("/add", async (req, res) =>  {
   }
 });
 
-app.put('/meal-plan/change/:recipe', (req, res) => {
-  const recipe = req.body.recipe
-  // lets the user edit a recipe they have in their meal plan
-  res.send(`Placeholder PUT request ${recipe}`);
+// updates user's diets
+app.put('/update/diets', async (req, res) => {
+  const token = req.headers.authorization?.split('Bearer ')[1];
+
+  if (!token) {
+      return res.send('No user logged in, skipping DB diet put');
+  }
+
+  const diet = req.body.diet
+  try{
+    const decoded = await admin.auth().verifyIdToken(token);
+
+    //if they haven't added recipes, their userId collection won't exist so use .set instead of .update
+    await db.collection('users').doc(decoded.uid).set({
+      diets: FieldValue.arrayUnion(diet) //takes what's already in the `diets` and adds `diet`
+    }, { merge: true }) //only updates the fields specified, leaves everything else alone
+    res.send(`"${diet}" added to diets`);
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: `Failed to add "${diet}" to diets`})
+  }
 });
 
+// updates user's intolerances
+app.put('/update/intolerances', async (req, res) => {
+  const token = req.headers.authorization?.split('Bearer ')[1];
+
+  if (!token) {
+      return res.send('No user logged in, skipping DB intolerance put');
+  }
+
+  const intolerance = req.body.intolerance
+  try{
+    const decoded = await admin.auth().verifyIdToken(token);
+
+    //if they haven't added recipes, their userId collection won't exist so use .set instead of .update
+    await db.collection('users').doc(decoded.uid).set({
+        intolerances: FieldValue.arrayUnion(intolerance)
+    }, { merge: true }) //only updates the fields specified, leaves everything else alone
+    res.send(`"${intolerance}" added to preferences`);
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ error: `Failed to add "${intolerance}" to intolerances`})
+  }
+});
+
+// delete a recipe from a specific users saved recipes in the database
 app.delete('/remove', async (req, res) => {
   const token = req.headers.authorization?.split('Bearer ')[1];
 

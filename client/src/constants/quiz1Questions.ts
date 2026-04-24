@@ -1,6 +1,6 @@
 import { Question } from "../pages/Quiz/quizTypes";
 
-export const quiz1: Question[] = [
+export const quiz1Questions: Question[] = [
     {
         title: "How do you like to spend your free time?",
         answers: [

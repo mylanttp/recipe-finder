@@ -9,9 +9,11 @@ type QuestionCardProp = {
 
 export const QuestionCard = ({question, onSet}: QuestionCardProp) => {
   const [picked, setPicked] = useState({title: "none picked", image: "none", impact: [0,0,0,0]} as Answer)
+  
   const handleAnswer = (answer: Answer) => {
-    if(picked.title !== answer.title){
-      onSet((prev) => prev.map((val, i) => val - picked.impact[i] + answer.impact[i]));
+    if(picked.title !== answer.title){ //if they already picked the same answer don't change it
+      onSet((prev) => prev.map(  //add the impact array to the results array
+        (val, i) => val - picked.impact[i] + answer.impact[i])); //changing answers removes the old answer's impact
       setPicked(answer);
     }
   };

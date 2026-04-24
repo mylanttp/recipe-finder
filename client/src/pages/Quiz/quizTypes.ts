@@ -8,3 +8,9 @@ export type Answer = {
     image: string,
     impact: number[]
 }
+
+export type Result = {
+    title: string,
+    blurb: string,
+    recipeId: number
+}
