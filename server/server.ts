@@ -135,17 +135,26 @@ app.put('/update/diets', async (req, res) => {
   }
 
   const diet = req.body.diet
+  const action = req.body.action
   try{
     const decoded = await admin.auth().verifyIdToken(token);
 
+    const doc = await db.collection('users').doc(decoded.uid)
     //if they haven't added recipes, their userId collection won't exist so use .set instead of .update
-    await db.collection('users').doc(decoded.uid).set({
-      diets: FieldValue.arrayUnion(diet) //takes what's already in the `diets` and adds `diet`
-    }, { merge: true }) //only updates the fields specified, leaves everything else alone
-    res.send(`"${diet}" added to diets`);
+    if(action === "add"){
+      doc.set({
+        diets: FieldValue.arrayUnion(diet) //takes what's already in the `diets` and adds `diet`
+      }, { merge: true }) //only updates the fields specified, leaves everything else alone
+      res.send(`"${diet}" added to diets`);
+    } else {
+      doc.set({
+        diets: FieldValue.arrayRemove(diet)
+      }, { merge: true }) 
+      res.send(`"${diet}" removed from diets`);
+    }
   } catch (err) {
     console.log(err)
-    res.status(500).json({ error: `Failed to add "${diet}" to diets`})
+    res.status(500).json({ error: `Failed to update "${diet}" in diets`})
   }
 });
 
@@ -158,17 +167,25 @@ app.put('/update/intolerances', async (req, res) => {
   }
 
   const intolerance = req.body.intolerance
+  const action = req.body.action
   try{
     const decoded = await admin.auth().verifyIdToken(token);
 
-    //if they haven't added recipes, their userId collection won't exist so use .set instead of .update
-    await db.collection('users').doc(decoded.uid).set({
-        intolerances: FieldValue.arrayUnion(intolerance)
-    }, { merge: true }) //only updates the fields specified, leaves everything else alone
-    res.send(`"${intolerance}" added to preferences`);
+    const doc = await db.collection('users').doc(decoded.uid)
+    if(action === "add"){
+      doc.set({
+        intolerances: FieldValue.arrayUnion(intolerance) //takes what's already in the `diets` and adds `diet`
+      }, { merge: true }) //only updates the fields specified, leaves everything else alone
+      res.send(`"${intolerance}" added to intolerances`);
+    } else if (action === "remove"){
+      doc.set({
+        intolerances: FieldValue.arrayRemove(intolerance)
+      }, { merge: true }) 
+      res.send(`"${intolerance}" removed from intolerances`);
+    }
   } catch (err) {
     console.log(err)
-    res.status(500).json({ error: `Failed to add "${intolerance}" to intolerances`})
+    res.status(500).json({ error: `Failed to upate "${intolerance}" in intolerances`})
   }
 });
 

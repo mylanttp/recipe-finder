@@ -1,6 +1,6 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { RecipeContext } from "../../RecipeContext";
-import { removeDiet, updateDiets } from "../../components/HandlePreferences";
+import { updateDiets } from "../../components/HandlePreferences";
 
 type DietsProps = {
     databaseSave: boolean
@@ -8,33 +8,33 @@ type DietsProps = {
 
 export const Diets = ({databaseSave}: DietsProps) => {
     const context = useContext(RecipeContext);
-    if(databaseSave){
-        context.setDisplayDiets(context.diets);
+
+    useEffect(() => {
+        if(databaseSave){
+            context.setDisplayDiets(context.diets);
+        }
+    }, []);
+
+    const handleUpdate = async (diet: string, action: string) => {
+      if(action === "add" && !context.displayDiets.includes(diet)){
+        if(databaseSave){
+            updateDiets(diet, action)
+            context.setDiets([...context.diets, diet]);
+        }
+        context.setDisplayDiets([...context.displayDiets, diet])
+    } else if(action === "remove"){
+        if(databaseSave){
+            updateDiets(diet, action)
+            context.setDiets(context.diets.filter(i => i !== diet));
+        }
+        context.setDisplayDiets(context.displayDiets.filter(i => i !== diet))
+    }
     }
 
-    const handleAdd = async (diet: string) => {
-        if(!context.displayDiets.includes(diet)){
-            if(databaseSave){
-                updateDiets(diet)
-                context.setDiets([...context.diets, diet]);
-            }
-            context.setDisplayDiets([...context.displayDiets, diet])
-        }
-    }
-
-    const handleRemove = async (diet: string) => {
-        if(context.displayDiets.includes(diet)){
-            if(databaseSave){ // on myMeals page
-                removeDiet(diet)
-                context.setDiets(context.diets.filter(i => i != diet));
-            }
-            context.setDisplayDiets(context.displayDiets.filter(i => i != diet));
-        }
-    }
 
     return <div>
             <label >{databaseSave? "Add to your diets: " : "Filter diets"}</label>
-            <select id="diets" onChange={(event) => handleAdd(event.target.value)}>
+            <select id="diets" onChange={(event) => handleUpdate(event.target.value, "add")}>
                 <option value="Gluten Free">Gluten Free</option>
                 <option value="Ketogenic">Ketogenic</option>
                 <option value="Vegetarian">Vegetarian</option>
@@ -49,7 +49,7 @@ export const Diets = ({databaseSave}: DietsProps) => {
             </select>  
             {context.displayDiets.map((diet: string) => (
                 <div key={diet}>
-                    <button onClick={()=>handleRemove(diet)}>{diet}</button>
+                    <button onClick={()=>handleUpdate(diet, "remove")}>{diet}</button>
                 </div>
             ))}
         </div>

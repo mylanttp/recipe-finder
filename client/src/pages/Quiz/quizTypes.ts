@@ -1,3 +1,5 @@
+import { Recipe } from "../../types"
+
 export type Question = {
     title: string,
     answers: Answer[],
@@ -12,5 +14,5 @@ export type Answer = {
 export type Result = {
     title: string,
     blurb: string,
-    recipeId: number
+    recipe: Recipe
 }

@@ -5,12 +5,14 @@ import "../../styles/quizStyle.css"
 type QuestionCardProp = {
   question: Question
   onSet: React.Dispatch<SetStateAction<number[]>>
+  finished: React.Dispatch<SetStateAction<boolean>>
 }
 
-export const QuestionCard = ({question, onSet}: QuestionCardProp) => {
+export const QuestionCard = ({question, onSet, finished}: QuestionCardProp) => {
   const [picked, setPicked] = useState({title: "none picked", image: "none", impact: [0,0,0,0]} as Answer)
   
   const handleAnswer = (answer: Answer) => {
+    finished(false)
     if(picked.title !== answer.title){ //if they already picked the same answer don't change it
       onSet((prev) => prev.map(  //add the impact array to the results array
         (val, i) => val - picked.impact[i] + answer.impact[i])); //changing answers removes the old answer's impact
