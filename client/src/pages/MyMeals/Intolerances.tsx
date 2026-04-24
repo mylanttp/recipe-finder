@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { updateIntolerances } from "../../components/HandlePreferences";
+import { removeIntolerance, updateIntolerances } from "../../components/HandlePreferences";
 import { RecipeContext } from "../../RecipeContext";
 
 type IntolerancesProps = {
@@ -21,6 +21,16 @@ export const Intolerances = ({databaseSave}: IntolerancesProps) => {
             context.setDisplayIntolerances([...context.displayIntolerances, intolerance])
         }
     }
+
+    const handleRemove = async (intolerance: string) => {
+        if(context.displayIntolerances.includes(intolerance)){
+            if(databaseSave){ // on myMeals page
+                removeIntolerance(intolerance)
+                context.setIntolerances(context.intolerances.filter(i => i != intolerance)); // updates users intolerances locally
+            }
+            context.setDisplayIntolerances(context.displayIntolerances.filter(i => i != intolerance));
+        }
+    }
     
     return <div>
             <label >{databaseSave? "Add to your intolerances: " : "Filter intolerances"}</label>
@@ -40,7 +50,7 @@ export const Intolerances = ({databaseSave}: IntolerancesProps) => {
             </select>
             {context.displayIntolerances.map((intolerance: string) => (
                 <div key={intolerance}>
-                    <button>{intolerance}</button>
+                    <button onClick={()=>handleRemove(intolerance)}>{intolerance}</button>
                 </div>
             ))}
         </div>

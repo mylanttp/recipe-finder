@@ -22,6 +22,7 @@ export default function Quiz() {
 
     return <div>
         <h2>Quiz Page</h2>
+        <h3>------------WORK IN PROGRESS---------------</h3>
         <button onClick={() => navigate('/')}>back to search</button>
         <p>{results}</p>
         {quiz1Questions.map((question: Question) => (

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { RecipeContext } from "../../RecipeContext";
-import { updateDiets } from "../../components/HandlePreferences";
+import { removeDiet, updateDiets } from "../../components/HandlePreferences";
 
 type DietsProps = {
     databaseSave: boolean
@@ -15,10 +15,20 @@ export const Diets = ({databaseSave}: DietsProps) => {
     const handleAdd = async (diet: string) => {
         if(!context.displayDiets.includes(diet)){
             if(databaseSave){
-                updateDiets(diet) // update intolerances on DB
+                updateDiets(diet)
                 context.setDiets([...context.diets, diet]);
             }
             context.setDisplayDiets([...context.displayDiets, diet])
+        }
+    }
+
+    const handleRemove = async (diet: string) => {
+        if(context.displayDiets.includes(diet)){
+            if(databaseSave){ // on myMeals page
+                removeDiet(diet)
+                context.setDiets(context.diets.filter(i => i != diet));
+            }
+            context.setDisplayDiets(context.displayDiets.filter(i => i != diet));
         }
     }
 
@@ -39,7 +49,7 @@ export const Diets = ({databaseSave}: DietsProps) => {
             </select>  
             {context.displayDiets.map((diet: string) => (
                 <div key={diet}>
-                    <button>{diet}</button>
+                    <button onClick={()=>handleRemove(diet)}>{diet}</button>
                 </div>
             ))}
         </div>

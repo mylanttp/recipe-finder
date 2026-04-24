@@ -73,3 +73,33 @@ export const updateIntolerances = async (intolerance: string) => {
         body: JSON.stringify({intolerance})
     })
 }
+
+export const removeDiet = async (diet: string) => {
+    const auth = getAuth()
+    const currentUser = auth.currentUser;
+    const token = currentUser ? await currentUser.getIdToken() : null;
+    
+    return fetch("http://localhost:8080/remove/diet", {
+        method: "REMOVE",
+        headers: {
+            ...(token && { "Authorization": `Bearer ${token}` }),
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({diet})
+    })
+}
+
+export const removeIntolerance = async (intolerance: string) => {
+    const auth = getAuth()
+    const currentUser = auth.currentUser;
+    const token = currentUser ? await currentUser.getIdToken() : null;
+    
+    return fetch("http://localhost:8080/remove/intolerance", {
+        method: "REMOVE",
+        headers: {
+            ...(token && { "Authorization": `Bearer ${token}` }),
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({intolerance})
+    })
+}
