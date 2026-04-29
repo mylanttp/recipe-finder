@@ -1,28 +1,23 @@
-.recipeContainer {
+.recipesContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
-
 }
 
-.recipeCard {
-  border: 1mm solid;
+.recipeCard{
+  border: 1.5px solid;
   border-radius: 10px;
   padding: 12px;
   text-align: left;
   width: 300px;
-
-  background-color: #e8eaeb;
+  height: 350px;
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  box-shadow: 3px 3px 0px black;
+  position: relative;
 }
 
 .recipeTitle {
@@ -31,6 +26,7 @@
   margin: 0;
   text-decoration: underline;
   text-underline-offset: 3px;
+  padding-right: 40px;
 }
 
 .imageBox {
@@ -41,6 +37,9 @@
   width: 300px;
   height: 200px;
   object-fit: cover;
+  border: 1.5px solid;
+  border-radius: 10px;
+  box-shadow: 1px 1px 0px black;
 }
 
 .footer {
@@ -50,21 +49,27 @@
 }
 
 .addButton{
+  position: absolute;
+  top: 8px;
+  right: 8px;
   border: 1px black solid;
-  background-color: #cde3cc;
-  font-size: 15px;
+  background-color: #5FC39C;
   padding: 6px 9px;
+  border-radius: 10px;
 }
 
 .removeButton{
+  position: absolute;
+  top: 8px;
+  right: 8px;
   border: 1px black solid;
-  background-color: #e3d1cc;
-  font-size: 15px;
+  background-color: #EF8C8F;
   padding: 6px 9px;
+  border-radius: 10px;
 }
 
 .seeMore{
   border: 1px black solid;
-  background-color: #dedede;
+  background-color: #fbbf0e;
   font-size: small
 }

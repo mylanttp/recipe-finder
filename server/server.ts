@@ -84,8 +84,6 @@ app.get('/get/diets', async (req, res) => {
 
 // get a specific users intolerances from the data base
 app.get('/get/intolerances', async (req, res) => {
-  console.log("backend getIntolerances")
-
   const token = req.headers.authorization?.split('Bearer ')[1];
 
   if (!token) {
@@ -102,6 +100,30 @@ app.get('/get/intolerances', async (req, res) => {
     console.log(err)
     res.status(500).json({ error: `Failed to add intolerances`})
   }
+});
+
+// get the information for a recipe page from the database
+app.get('/api/info', async (req, res) => {
+  const query = req.query.q
+
+  console.log("query")
+
+  fetch(`https://api.spoonacular.com/recipes/${query}/information`,
+    {headers: {
+        "X-Api-Key": SPOONACULAR_API_KEY,
+      },})
+    .then((response) => {
+      console.log("api status:", response.status);
+      return response.json();
+    })
+    .then((data) => {
+      console.log("data:", data);
+      res.json(data);
+    })
+    .catch((err) => {
+      console.error("error:", err);
+      res.status(500).json({ error: err.message });
+    });
 });
 
 // add a recipe to a specific users saved recipes in the database

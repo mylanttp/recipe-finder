@@ -16,10 +16,6 @@ const toRecipeList = (dataList: apiResponse): Recipe[] => {
 }
 
 export const fetchRecipeList = ({search, diet, intolerances}: Props): Promise<Recipe[]> => {
-  console.log("serach:", search)
-  console.log("diet:", diet)
-  console.log("intolerances:", intolerances)
-
   return fetch(`http://localhost:8080/api/search?q=${encodeURIComponent(search)}
                 &diet=${encodeURIComponent(diet.join(','))}
                 &intolerances=${encodeURIComponent(intolerances.join(','))}`)

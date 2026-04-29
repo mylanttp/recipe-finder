@@ -14,7 +14,6 @@ type AuthData = {
 
 const AuthUserContext = createContext<AuthData>({user: null})
 
-
 export default function AuthUserProvider({
   children,
 }: {

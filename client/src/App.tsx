@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import Search from "./pages/Search/Search";
-import "./styles/App.css";
 import Quiz from "./pages/Quiz/Quiz";
 import MyMeals from "./pages/MyMeals/MyMeals";
 import { Recipe } from "./types";
@@ -10,6 +9,8 @@ import AuthUserProvider from "./auth/AuthUserProvider";
 import Header from "./components/Header";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDiets, getIntolerances } from "./components/HandlePreferences";
+import { RecipeInfo } from "./pages/RecipeInfo/RecipeInfo";
+import "./index.css"
 
 function App () {
     const [myRecipeList, setMyRecipeList] = useState<Recipe []>([])
@@ -17,7 +18,12 @@ function App () {
     const [intolerances, setIntolerances] = useState<string[]>([]); 
     const [displayIntolerances, setDisplayIntolerances] = useState(intolerances);
     const [displayDiets, setDisplayDiets] = useState(diets);
-
+    const [recipeInfo, setRecipeInfo] = useState<Recipe>({ 
+        id:1,
+        title:"No Recipe Selected Yet",
+        image:"No image",
+        imageType:"No image",
+        saved: false} as Recipe);
 
     useEffect(() => {
         const auth = getAuth();
@@ -34,6 +40,7 @@ function App () {
                 setIntolerances(await getIntolerances());
                 setDisplayDiets(await getDiets());
                 setDisplayIntolerances(await getIntolerances());
+                
             } else {
                 setMyRecipeList([]);
                 setDiets([]);
@@ -99,13 +106,15 @@ function App () {
             <RecipeContext.Provider value={{myRecipeList: myRecipeList, onAdd: addRecipe, onRemove: removeRecipe,
                                             diets: diets, intolerances: intolerances, setDiets: setDiets, setIntolerances: setIntolerances,
                                             displayDiets: displayDiets, displayIntolerances: displayIntolerances,
-                                            setDisplayDiets: setDisplayDiets, setDisplayIntolerances: setDisplayIntolerances,}}>
-                <Header/>
+                                            setDisplayDiets: setDisplayDiets, setDisplayIntolerances: setDisplayIntolerances,
+                                            recipeInfo: recipeInfo, setRecipeInfo: setRecipeInfo}}>
                 <div>
+                    <Header/>
                     <Routes>
                         <Route path="/" element={<Search />} />
                         <Route path="/quiz" element={<Quiz />} />
                         <Route path="/myMeals" element={<MyMeals />} />
+                        <Route path="/recipe/" element={<RecipeInfo />}/>
                     </Routes>
                 </div>
             </RecipeContext.Provider>

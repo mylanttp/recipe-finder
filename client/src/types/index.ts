@@ -22,4 +22,7 @@ export type RecipeContextProps = {
 
   displayIntolerances: string[]
   setDisplayIntolerances: React.Dispatch<React.SetStateAction<string[]>>
+
+  recipeInfo: Recipe
+  setRecipeInfo: React.Dispatch<React.SetStateAction<Recipe>> 
 }

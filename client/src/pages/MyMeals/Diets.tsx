@@ -16,6 +16,7 @@ export const Diets = ({databaseSave}: DietsProps) => {
     }, []);
 
     const handleUpdate = async (diet: string, action: string) => {
+      if(diet === "default"){ return; }  
       if(action === "add" && !context.displayDiets.includes(diet)){
         if(databaseSave){
             updateDiets(diet, action)
@@ -35,6 +36,7 @@ export const Diets = ({databaseSave}: DietsProps) => {
     return <div>
             <label >{databaseSave? "Add to your diets: " : "Filter diets"}</label>
             <select id="diets" onChange={(event) => handleUpdate(event.target.value, "add")}>
+                <option value="default">Select an option</option>
                 <option value="Gluten Free">Gluten Free</option>
                 <option value="Ketogenic">Ketogenic</option>
                 <option value="Vegetarian">Vegetarian</option>

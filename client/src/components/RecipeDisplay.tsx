@@ -8,10 +8,10 @@ type RecipeListProps = {
 
 const RecipeDisplay = ({recipeList}: RecipeListProps) => {
     return (
-    <div className='recipeContainer'>
+    <div className="recipesContainer">
       {recipeList.length > 0 &&
         recipeList.map((recipe: Recipe) => (
-          <div className='recipeCard' key={recipe.id}>
+          <div key={recipe.id}>
             <RecipeCard recipe={recipe}/>
           </div>
         ))}

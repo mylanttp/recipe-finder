@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { RecipeContext } from "../RecipeContext";
 import { Recipe } from "../types";
+import { useNavigate } from "react-router-dom";
 
 type RecipeCardProps = {
   recipe: Recipe;
@@ -8,6 +9,8 @@ type RecipeCardProps = {
 
 const RecipeCard = ({recipe}: RecipeCardProps) => {
   const recipeInfo = useContext(RecipeContext);
+  const navigate = useNavigate()
+
 
   const addOrRemove = () => {
     if(!recipe.saved){
@@ -18,7 +21,12 @@ const RecipeCard = ({recipe}: RecipeCardProps) => {
     recipe.saved = !recipe.saved
   }
 
-  return <div>
+  const seeMore = () => {
+    recipeInfo.setRecipeInfo(recipe);
+    navigate("/recipe");
+  }
+
+  return <div className="recipeCard">
       <div className="header">
         <p className="recipeTitle">{recipe.title}</p>
         <button className={!recipe.saved? "addButton" : "removeButton"} 
@@ -30,7 +38,7 @@ const RecipeCard = ({recipe}: RecipeCardProps) => {
       </div>
 
       <div className="footer">
-        <button className="seeMore">See more</button>
+        <button className="seeMore" onClick={seeMore}>See more</button>
       </div>
   </div>
 };

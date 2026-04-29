@@ -16,6 +16,7 @@ export const Intolerances = ({databaseSave}: IntolerancesProps) => {
     }, []);
 
     const handleUpdate = async (intolerance: string, action: string) => {
+        if(intolerance === "default"){ return; }
         if(action === "add" && !context.displayIntolerances.includes(intolerance)){
             if(databaseSave){
                 updateIntolerances(intolerance, action)
@@ -31,10 +32,10 @@ export const Intolerances = ({databaseSave}: IntolerancesProps) => {
         }
     }
 
-    
     return <div>
             <label >{databaseSave? "Add to your intolerances: " : "Filter intolerances"}</label>
             <select id="intolerances" onChange={(event) => handleUpdate(event.target.value, "add")}>
+                <option value="default">Select an option</option>
                 <option value="Dairy">Dairy</option>
                 <option value="Egg">Egg</option>
                 <option value="Gluten">Gluten</option>
