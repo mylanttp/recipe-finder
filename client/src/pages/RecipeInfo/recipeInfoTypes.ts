@@ -1,10 +1,10 @@
-type Measure = {
+export type Measure = {
     amount: number
     unitLong: string
     unitShort: string
 }
 
-type Ingredient = {
+export type Ingredient = {
     aisle: string
     amount: number
     consistency: string

@@ -26,27 +26,37 @@ function Search() {
     }
 
     return (
-        <>
-            <div className="subtext">
-                <button className="searchButton" onClick={enterSearch}>Search:</button>
-                <input 
-                    className="input"
-                    data-testid="search"
-                    type="search"
-                    placeholder="What's for lunch?"
-                    onChange={ (event) => setSearch(event.currentTarget.value)}
-                />
-                <p>OR</p>
-                <button className="quizButton" onClick={() => navigate('/quiz')}>Take a quiz to see which recipe you are!</button>
+        <div className="searchPage">
+            <div className="filtersContainer">
+                <p className="filterTitle">Filter your search</p>
+                <div className="intoleranceSection">
+                    <Intolerances databaseSave={false}/>
+                </div>
+                <div className="dietSection">
+                    <Diets databaseSave={false}/>
+                </div>
             </div>
-            <button className="mealButton" onClick={() => navigate('/myMeals')}>MyMeals</button>
-            <Diets databaseSave={false}/>
-            <Intolerances databaseSave={false}/>
-            <hr className="divider" />
-            {recipeList.length === 0 && <p>Search!</p>}
-            <RecipeDisplay recipeList={recipeList}/>
-        </>
-        
+
+            <div className="rightSearch">
+                <div className="subtext">
+                    <button className="searchButton" onClick={enterSearch}>Search:</button>
+                    <input 
+                        className="input"
+                        data-testid="search"
+                        type="search"
+                        placeholder="What's for lunch?"
+                        onChange={ (event) => setSearch(event.currentTarget.value)}
+                        onKeyDown={(event) => { if (event.key === 'Enter') enterSearch() }}
+                    />
+                    <p> Can't decide?</p>
+                    <button className="quizButton" onClick={() => navigate('/quiz')}>Take a quiz to see which recipe you are!!</button>
+                </div>
+
+                <hr className="divider" />
+                {recipeList.length === 0 && <p>Search!</p>}
+                <RecipeDisplay recipeList={recipeList}/>
+            </div>
+        </div>
     );
 }
 

@@ -7,34 +7,31 @@ import { Result } from "./Result";
 
 export default function Quiz() {
     const navigate = useNavigate();
-    const [results, setResults] = useState([0,0,0,0]);
+    const [results, setResults] = useState([0,0,0,0,0,0,0,0,0,0]);
     const [finishedQuiz, setFinishedQuiz] = useState(false);
 
     const processResults = () => {
-        let sum = 0;
-        results.forEach(num => sum += num);
-        if(sum === 9){
-            setFinishedQuiz(true)
-        }
+        setFinishedQuiz(true)
     }
 
     const resetQuiz = () => {
-        setResults([0,0,0,0])
+        setResults([0,0,0,0,0,0,0,0,0,0])
         setFinishedQuiz(false)
     }
 
     return <div>
-        <h2>Quiz Page</h2>
-        <h3>------------WORK IN PROGRESS---------------</h3>
+        <h2>Which Recipe Are You?</h2>
         <button onClick={() => navigate('/')}>back to search</button>
         <p>{results}</p>
-        {quiz1Questions.map((question: Question) => (
+        <div className="quizDisplay">
+            {quiz1Questions.map((question: Question, index: number) => (
             <div key={question.title}>
-            <QuestionCard question={question} onSet={setResults} finished={setFinishedQuiz}/>
+            <QuestionCard question={question} onSet={setResults} finished={setFinishedQuiz} index={index}/>
             </div>
-        ))}
-        <button onClick={processResults}>Reveal what recipe I am!</button>
-        {finishedQuiz? <Result results={results}/> : <p>Please answer all questions</p>}
-        <button onClick={resetQuiz}>Reset quiz!</button>
+            ))}
+            <button className="revealButton" onClick={processResults}>Reveal what recipe I am!</button>
+            {finishedQuiz? <Result results={results}/> : <p>Please answer all questions</p>}
+            <button className="resetButton"onClick={resetQuiz}>Reset quiz!</button>
+        </div>
     </div>
 }

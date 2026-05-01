@@ -14,8 +14,9 @@ export const Result = ({results}: ResultProp) => {
     return answers[i].recipe;
   }
 
-  return <div>
-      <p>Your answer goes here! and it will be based on this {results}</p>
+  return <div className="resultBox">
+      <p>{answers[results.indexOf(Math.max(...results))].title}</p>
+      <p>{answers[results.indexOf(Math.max(...results))].blurb}</p>
       <RecipeDisplay recipeList={[handleResults()]} />
     </div>
 }

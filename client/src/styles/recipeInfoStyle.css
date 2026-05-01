@@ -1,0 +1,150 @@
+.recipeInfoPage {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    align-items: center;
+    position: relative;
+}
+
+.overview, .ingredients, .directions, .nutrition {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1.5px solid black;
+    box-shadow: 3px 3px 0px black;
+    width: 800px;
+}
+
+.recipeInfoPage::before {
+    content: '~';
+    position: absolute;
+    top: 70px;
+    left: 10px;
+    font-size: 19rem;
+    font-family: 'Figtree', sans-serif;
+    color: white;
+    -webkit-text-stroke: 1px black;
+}
+
+.overview {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.overviewLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+.overviewTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1.5px solid black;
+}
+
+.tagGreen { background-color: #5FC39C; border-radius: 20px; }
+.tagBlue { background-color: #7F9BC8; border-radius: 4px; }
+.tagPurple { background-color: #B994E0; border-radius: 20px; }
+.tagYellow { background-color: #fbbf0e; border-radius: 4px; }
+.tagPink { background-color: #EF8C8F; border-radius: 20px; }
+
+.quickInfo {
+    background-color: #F9F9F9;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1.5px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+
+
+.times {
+    display: flex;
+    gap: 1rem;
+}
+
+.timeCircle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid black;
+    font-weight: 700;
+}
+
+.timeCircle p {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.timeLabel {
+    font-size: 0.7rem;
+    font-weight: 400;
+}
+
+.timeNumber {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.timeUnit {
+    font-size: 0.65rem;
+    font-weight: 400;
+    margin-top: -2px;
+    font-weight: 700;
+}
+
+.circleYellow { background-color: #fbbf0e; }
+.circleGreen { background-color: #5FC39C; }
+.circlePink { background-color: #EF8C8F; }
+
+.overviewRight {
+    flex-shrink: 0;
+}
+
+.recipeInfoImageBox {
+    border: 1.5px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 3px 3px 0px black;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: #FDEBEC;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.recipeInfoImage {
+    width: 240px;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border: 1.5px solid black;
+    border-radius: 10px;
+}

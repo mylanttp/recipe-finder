@@ -33,26 +33,26 @@ export const Diets = ({databaseSave}: DietsProps) => {
     }
 
 
-    return <div>
-            <label >{databaseSave? "Add to your diets: " : "Filter diets"}</label>
-            <select id="diets" onChange={(event) => handleUpdate(event.target.value, "add")}>
-                <option value="default">Select an option</option>
-                <option value="Gluten Free">Gluten Free</option>
-                <option value="Ketogenic">Ketogenic</option>
-                <option value="Vegetarian">Vegetarian</option>
-                <option value="Lacto-Vegetarian">Lacto-Vegetarian</option>
-                <option value="Ovo-Vegetarian">Ovo-Vegetarian</option>
-                <option value="Vegan">Vegan</option>
-                <option value="Pescetarian">Pescetarian</option>
-                <option value="Paleo">Paleo</option>
-                <option value="Primal">Primal</option>
-                <option value="Low FODMAP">Low FODMAP</option>
-                <option value="Whole 30">Whole 30</option>
-            </select>  
+    return <div className="filter">
+            <div className="options">
+                <label >{databaseSave? "Add diets: " : "Filter diets"}</label>
+                <select id="diets" onChange={(event) => handleUpdate(event.target.value, "add")}>
+                    <option value="default">Select an option</option>
+                    <option value="Gluten Free">Gluten Free</option>
+                    <option value="Ketogenic">Ketogenic</option>
+                    <option value="Vegetarian">Vegetarian</option>
+                    <option value="Lacto-Vegetarian">Lacto-Vegetarian</option>
+                    <option value="Ovo-Vegetarian">Ovo-Vegetarian</option>
+                    <option value="Vegan">Vegan</option>
+                    <option value="Pescetarian">Pescetarian</option>
+                    <option value="Paleo">Paleo</option>
+                    <option value="Primal">Primal</option>
+                    <option value="Low FODMAP">Low FODMAP</option>
+                    <option value="Whole 30">Whole 30</option>
+                </select>  
+            </div>
             {context.displayDiets.map((diet: string) => (
-                <div key={diet}>
-                    <button onClick={()=>handleUpdate(diet, "remove")}>{diet}</button>
-                </div>
+                <button className="dietButton" key={diet} onClick={()=>handleUpdate(diet, "remove")}>X {diet}</button>
             ))}
         </div>
 }

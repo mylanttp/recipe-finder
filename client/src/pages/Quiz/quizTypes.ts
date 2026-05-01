@@ -11,7 +11,7 @@ export type Answer = {
     impact: number[]
 }
 
-export type Result = {
+export type ResultType = {
     title: string,
     blurb: string,
     recipe: Recipe

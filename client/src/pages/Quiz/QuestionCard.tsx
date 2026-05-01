@@ -6,10 +6,13 @@ type QuestionCardProp = {
   question: Question
   onSet: React.Dispatch<SetStateAction<number[]>>
   finished: React.Dispatch<SetStateAction<boolean>>
+  index: number
 }
 
-export const QuestionCard = ({question, onSet, finished}: QuestionCardProp) => {
-  const [picked, setPicked] = useState({title: "none picked", image: "none", impact: [0,0,0,0]} as Answer)
+export const QuestionCard = ({question, onSet, finished, index}: QuestionCardProp) => {
+  const [picked, setPicked] = useState({title: "none picked", image: "none", impact: [0,0,0,0,0,0,0,0,0,0,0]} as Answer)
+  const colors = ['#5FC39C', '#EF8C8F', '#fbbf0e', '#B994E0', '#7F9BC8'];
+
   
   const handleAnswer = (answer: Answer) => {
     finished(false)
@@ -21,12 +24,18 @@ export const QuestionCard = ({question, onSet, finished}: QuestionCardProp) => {
   };
 
   return <div className="questionContainer">
-    <h4>{question.title}</h4>
+    <h4 style={{ backgroundColor: colors[index % colors.length] }}
+    >{question.title}</h4>
     <div className="answers">
       {question.answers.map((answer: Answer) => (
-        <div className="answer" key={answer.title}>
-          <button onClick={() => handleAnswer(answer)
-            }>{answer.title}</button>
+        <div className="answerCard" key={answer.title}>
+          <button className={picked.title === "none picked" ? "" : 
+                              picked.title === answer.title ? "answerSelected" : "answerUnselected"}
+                              onClick={() => handleAnswer(answer)
+            }>
+              <img src={answer.image} alt={answer.title}/>
+              <p>{answer.title}</p>
+              </button>
         </div>
       ))}
     </div>
