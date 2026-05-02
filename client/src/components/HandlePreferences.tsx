@@ -1,5 +1,6 @@
 import { getAuth } from "firebase/auth";
 
+//gets users diets from database
 export const getDiets = async (): Promise<string[]> => {
     const auth = getAuth()
     const currentUser = auth.currentUser;
@@ -22,6 +23,7 @@ export const getDiets = async (): Promise<string[]> => {
     })
 }
 
+// gets users intolerances from database
 export const getIntolerances = async (): Promise<string[]> => {
     const auth = getAuth()
     const currentUser = auth.currentUser;
@@ -44,6 +46,7 @@ export const getIntolerances = async (): Promise<string[]> => {
     })
 }
 
+// updates users diets in database
 export const updateDiets = async (diet: string, action: string) => {
     const auth = getAuth()
     const currentUser = auth.currentUser;
@@ -59,6 +62,7 @@ export const updateDiets = async (diet: string, action: string) => {
     })
 }
 
+// updates users intolerances in database
 export const updateIntolerances = async (intolerance: string, action: string) => {
     const auth = getAuth()
     const currentUser = auth.currentUser;

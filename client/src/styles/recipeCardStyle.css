@@ -70,13 +70,13 @@
   top: 8px;
   right: 8px;
   border: 1px black solid;
-  background-color: #EF8C8F;
+  background-color: #fb9c9f;
   padding: 0px 9px;
   border-radius: 10px;
 }
 
 .seeMore{
   border: 1px black solid;
-  background-color: #fbbf0e;
+  background-color: #FFE082;
   font-size: small
 }

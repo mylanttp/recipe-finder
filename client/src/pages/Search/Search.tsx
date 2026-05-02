@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Diets } from "../MyMeals/Diets";
 import { Intolerances } from "../MyMeals/Intolerances";
 import { RecipeContext } from "../../RecipeContext";
+import { testRecipeList } from "../../constants/testRecipeList";
 
 function Search() {
     const context = useContext(RecipeContext);
@@ -53,8 +54,7 @@ function Search() {
                 </div>
 
                 <hr className="divider" />
-                {recipeList.length === 0 && <p>Search!</p>}
-                <RecipeDisplay recipeList={recipeList}/>
+                <RecipeDisplay recipeList={recipeList.length === 0? testRecipeList : recipeList}/>
             </div>
         </div>
     );

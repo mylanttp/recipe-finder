@@ -18,15 +18,20 @@ const Header = () => {
 
   return (
   <div className={`pageHeader ${location.pathname === '/' ? '' : 'subpageHeader'}`}>
-        <h1 className={`headerTitle ${location.pathname === '/' ? '' : 'subpageheaderTitle'}`}>RECIPE FINDER!</h1>
+        <div className={`leftHeaderSection ${location.pathname === '/' ? 'leftHeaderCenter' : 'leftHeaderLeft'}`}>
+          <img className="logo" src="/recipeFinderLogo.svg" alt="logo" />
+          <h1 className={location.pathname === '/' ? "headerTitle" : "subpageheaderTitle"}>RECIPE FINDER!</h1>
+      </div>
         <div className="rightHeaderSection">
             {location.pathname === '/' ? null : <button className="subheaderButton" onClick={() => navigate('/')}>Search</button>}
             <button className="subheaderButton"
                  onClick={() => navigate('/quiz')}>Quiz</button>
             <button className="subheaderButton"
                 onClick={() => navigate('/myMeals')}>MyMeals</button>
-            {user? <p>Hello {user.displayName}!</p>: <p></p>}
-            <button onClick={handleLoginClick}>{user? "Sign Out" : "Log in"}</button>
+            <div className="logIn">
+              {user? <p>Hello {user.displayName}!</p>: <p></p>}
+              <button onClick={handleLoginClick}>{user? "Sign Out" : "Log in"}</button>
+            </div>
         </div>
     </div>
   );

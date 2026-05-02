@@ -3,10 +3,12 @@
   flex-direction: column;
   gap: 1rem;
   align-items: center;
+  margin-top: 30px;
 }
 
 .resetButton {
   width: fit-content;
+  margin-bottom: 30px;
 }
 
 .revealButton {
@@ -28,7 +30,7 @@
   border: 1.5px solid black;
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 3px 3px 5px black;
+  box-shadow: 3px 3px 0px black;
   background-color: white;
   align-items: center;
 }
@@ -92,11 +94,24 @@
 
 .resultBox {
   width: 550px;
-  margin: 0 auto;
+  margin: 10px;
   border: 1.5px solid black;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 3px 3px 5px black;
   background-color: white;
   align-items: center;
+}
+
+.resultTitle{
+  font-size: 25px;
+  padding: 8px;
+  margin: 0;
+}
+
+.resultBlurb {
+  font-size: 20px;
+  padding: 20px;
+  margin: 0;
+
 }

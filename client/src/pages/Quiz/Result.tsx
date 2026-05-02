@@ -15,8 +15,9 @@ export const Result = ({results}: ResultProp) => {
   }
 
   return <div className="resultBox">
-      <p>{answers[results.indexOf(Math.max(...results))].title}</p>
-      <p>{answers[results.indexOf(Math.max(...results))].blurb}</p>
+      <h3 className="resultTitle">{answers[results.indexOf(Math.max(...results))].title}</h3>
+      <p className="resultBlurb">{answers[results.indexOf(Math.max(...results))].blurb}</p>
       <RecipeDisplay recipeList={[handleResults()]} />
+      <p className="resultText">Click "+" to save to your recipes! or Click "See more" to get more details!</p>
     </div>
 }

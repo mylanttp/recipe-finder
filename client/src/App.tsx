@@ -19,12 +19,13 @@ function App () {
     const [displayIntolerances, setDisplayIntolerances] = useState(intolerances);
     const [displayDiets, setDisplayDiets] = useState(diets);
     const [recipeInfo, setRecipeInfo] = useState<Recipe>({ 
-        id:1,
-        title:"No Recipe Selected Yet",
-        image:"No image",
-        imageType:"No image",
-        saved: false} as Recipe);
+                                                            id:1,
+                                                            title:"No Recipe Selected Yet",
+                                                            image:"No image",
+                                                            imageType:"No image",
+                                                            saved: false} as Recipe);
 
+    // process log in / sign out
     useEffect(() => {
         const auth = getAuth();
 
@@ -53,6 +54,7 @@ function App () {
         return () => unsubscribe(); // cleanup on unmount
     }, []); // run once
     
+    // add recipe to user's database
     const addRecipe = async (recipe: Recipe): Promise<boolean> => {
         const auth = getAuth()
         const currentUser = auth.currentUser;
@@ -78,6 +80,7 @@ function App () {
         })
     };
 
+    // remove recipe from users data
     const removeRecipe = async (recipe: Recipe): Promise<boolean> => {
         const auth = getAuth()
         const currentUser = auth.currentUser;

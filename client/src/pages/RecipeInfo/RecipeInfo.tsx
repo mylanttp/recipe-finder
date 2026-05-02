@@ -30,62 +30,84 @@ export const RecipeInfo = () => {
 if (!recipeInfo) return <p>Loading...</p>;
 
 return <div>
-    <button onClick={() => navigate('/')}>back to search</button>
     {recipe.id === 1 ? <p>{recipe.title}</p> :
         <div className="recipeInfoPage">
-        <div className="overview">
-            <div className="overviewLeft">
-                <h2 className="overviewTitle">{recipeInfo.title}</h2>
-                <div className="tags">
-                    {recipeInfo.glutenFree && <span className="tag tagGreen">Gluten Free</span>}
-                    {recipeInfo.dairyFree && <span className="tag tagBlue">Dairy Free</span>}
-                    {recipeInfo.vegan && <span className="tag tagPurple">Vegan</span>}
-                    {recipeInfo.vegetarian && <span className="tag tagYellow">Vegetarian</span>}
-                    {recipeInfo.veryHealthy && <span className="tag tagPink">Very Healthy</span>}
+            <button onClick={() => navigate('/')}>back to search</button>
+            <div className="overview">
+                <div className="overviewLeft">
+                    <div className="tags">
+                        {recipeInfo.glutenFree && <span className="tag tagGreen">Gluten Free</span>}
+                        {recipeInfo.dairyFree && <span className="tag tagBlue">Dairy Free</span>}
+                        {recipeInfo.vegan && <span className="tag tagPurple">Vegan</span>}
+                        {recipeInfo.vegetarian && <span className="tag tagYellow">Vegetarian</span>}
+                        {recipeInfo.ketogenic && <span className="tag tagPink">Ketogenic</span>}
+                        {recipeInfo.lowFodmap && <span className="tag tagBlue">Low FODMAP</span>}
+                        {recipeInfo.whole30 && <span className="tag tagPurple">Whole 30</span>}
+
+                    </div>
+                    <h2 className="overviewTitle">{recipeInfo.title}</h2>
+                    <div className="overviewNotTitle">
+                        <p>{recipeInfo.summary?.replace(/<[^>]*>/g, '').split('.')[0] + '.'}</p>
+                        <div className="bars">
+                            <div className="servings">
+                                Serves {recipeInfo.servings}
+                            </div>
+                            <div className="price">
+                                Price Per Serving: ${((recipeInfo.pricePerServing)/(recipeInfo.servings)/10).toFixed(2)}
+                            </div>
+                        </div>
+                        <button className="addRemoveButton" >{recipe.saved? "Already Saved to recipes" : "Save to your recipes"}</button>
+                    </div>
                 </div>
-                <div className="quickInfo">
-                    <p>🍽 Serves {recipeInfo.servings}</p>
-                    <div className="times">
-                        <div className="timeCircle circleYellow">
-                            <p>{recipeInfo.readyInMinutes}</p>
-                            <span>total</span>
-                        </div>
-                        <div className="timeCircle circleGreen">
-                            <p>{recipeInfo.preparationMinutes}</p>
-                            <span>prep</span>
-                        </div>
-                        <div className="timeCircle circlePink">
-                            <p>{recipeInfo.cookingMinutes}</p>
-                            <span>cook</span>
+                <div className="overviewRight">
+                    <div className="recipeInfoImageBox">
+                        <img className="recipeImage" src={recipeInfo.image} alt={recipeInfo.title}/>
+                        <div className="times">
+                            <div className="timeCircle circleYellow">
+                                <span >total</span>
+                                <p>{recipeInfo.readyInMinutes}</p>
+                                <span className="timeUnit">min</span>
+                            </div>
+                            <div className="timeCircle circleGreen">
+                                <span>prep</span>                                
+                                <p>{recipeInfo.preparationMinutes}</p>
+                                <span className="timeUnit">min</span>
+                            </div>
+                            <div className="timeCircle circlePink">
+                                <span>cook</span>
+                                <p>{recipeInfo.cookingMinutes}</p>
+                                <span className="timeUnit">min</span>
+                            </div>
                         </div>
                     </div>
-                    <p className="summary">{recipeInfo.summary}</p>
                 </div>
             </div>
-            <div className="overviewRight">
-                <div className="recipeInfoImageBox">
-                    <img className="recipeImage" src={recipeInfo.image} alt={recipeInfo.title}/>
+
+            <div className="secondInfoBox">
+                <div className="ingredients">
+                    <h3 className="ingredientsTitle">Ingredients</h3>
+                    <div className="ingredientsList"> 
+                        <ul>
+                            {recipeInfo.extendedIngredients?.map((ingredient: Ingredient) => (
+                                <li key={ingredient.id}>
+                                    {ingredient.amount} {ingredient.unit} {ingredient.name}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <h4 className="aboutTitle">About</h4>
+                    <div className="about">
+                        <p>Source: <a href={recipeInfo.sourceUrl}>{recipeInfo.sourceName}</a></p>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-            <div className="ingredients">
-                <h3>Ingredients</h3>
-                {recipeInfo.extendedIngredients?.map((ingredient: Ingredient) => (
-                    <p key={ingredient.id}>
-                        {ingredient.amount} {ingredient.unit} {ingredient.name}
-                    </p>
-                ))}
-            </div>
-
-            <div className="directions">
-                <h3>Directions</h3>
-                <p>{recipeInfo.instructions}</p>
-            </div>
-
-            <div className="nutrition">
-                <h3>About</h3>
-                <p>Source: <a href={recipeInfo.sourceUrl}>{recipeInfo.sourceName}</a></p>
+                <div className="directions">
+                    <h3 className="directionsTitle">Directions</h3>
+                        <div className="directionsList" >
+                            <div dangerouslySetInnerHTML={{ __html: recipeInfo.instructions }} />
+                        </div>
+                </div>
             </div>
         </div>
     }

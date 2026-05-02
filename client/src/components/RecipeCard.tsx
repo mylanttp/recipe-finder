@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { RecipeContext } from "../RecipeContext";
 import { Recipe } from "../types";
 import { useNavigate } from "react-router-dom";
@@ -26,11 +26,21 @@ const RecipeCard = ({recipe}: RecipeCardProps) => {
     navigate("/recipe");
   }
 
+  useEffect(() => {
+    console.log("used Effect in RecipeCard")
+    const exists = recipeInfo.myRecipeList.some(obj => obj.id === recipe.id);
+    if (exists){
+      recipe.saved = true;
+    } else {
+      recipe.saved = false;
+    }
+  })
+
   return <div className="recipeCard">
       <div className="header">
         <p className="recipeTitle">{recipe.title}</p>
         <button className={!recipe.saved? "addButton" : "removeButton"} 
-          onClick={() => addOrRemove()}>{!recipe.saved? "+" : "-"}</button>
+          onClick={() => addOrRemove()}> {recipe.saved? "-" : "+"}</button>
       </div>
 
       <div className="imageBox">

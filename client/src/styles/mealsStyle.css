@@ -38,16 +38,6 @@
     flex-wrap: wrap;
 }
 
-.filterTitle{
-    font-size: 1.2rem;
-    font-weight: 600;
-    border: 1.5px solid black;
-    border-radius: 10px;
-    padding: 4px 12px;
-    box-shadow: 2px 2px 0px black;
-    background-color: #dbc1f6;
-}
-
 .dietSection {
     width: 100%;
     flex-shrink: 0;
@@ -93,7 +83,7 @@
 }
 
 .dietButton{
-    background-color: #B994E0;
+    background-color: #92cff8;
     border-radius: 10px;
     width: fit-content;
     padding: 4px 8px;

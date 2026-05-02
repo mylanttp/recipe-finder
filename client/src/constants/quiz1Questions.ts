@@ -4,19 +4,19 @@ export const quiz1Questions: Question[] = [
   {
         title: "Choose a spirit animal the represents you best",
         answers: [
-            {title: "Golden retriever", image: "https://images.pexels.com/photos/13565225/pexels-photo-13565225.jpeg", impact:  [1,3,2,1,3,3,2,2,1,3,0]},
-            {title: "Raccoon", image: "https://images.pexels.com/photos/10767665/pexels-photo-10767665.jpeg", impact:           [0,1,3,3,0,1,0,1,0,2,2]},
-            {title: "Lion", image: "https://images.pexels.com/photos/32420365/pexels-photo-32420365.jpeg", impact:              [3,0,0,2,1,0,1,0,2,0,3]},
-            {title: "Butterfly", image: "https://images.pexels.com/photos/8758996/pexels-photo-8758996.jpeg", impact:           [2,2,1,0,2,2,3,3,3,1,1]}
+            {title: "Golden retriever", image: "https://images.pexels.com/photos/13565225/pexels-photo-13565225.jpeg", impact:  [1,3,2,1,3,2,2,1,3,0]},
+            {title: "Raccoon", image: "https://images.pexels.com/photos/10767665/pexels-photo-10767665.jpeg", impact:           [0,1,3,3,0,0,1,0,2,2]},
+            {title: "Lion", image: "https://images.pexels.com/photos/32420365/pexels-photo-32420365.jpeg", impact:              [3,0,0,2,1,1,0,2,0,3]},
+            {title: "Butterfly", image: "https://images.pexels.com/photos/8758996/pexels-photo-8758996.jpeg", impact:           [2,2,1,0,2,3,3,3,1,1]}
         ]
     },
     {
-        title: "You visit a new restaurant, what are you getting?",
+        title: "You go out to eat at a restaurant, what are you getting?",
         answers: [
-            {title: "The restaurant's specialty", image: "https://images.pexels.com/photos/7594058/pexels-photo-7594058.jpeg", impact:                                                 [1,3,1,2,0,1,1,2,3,2]},
-            {title: "Something familiar", image: "https://images.pexels.com/photos/34014195/pexels-photo-34014195.jpeg", impact:                                                         [0,2,3,3,1,0,1,3,2,3]},
-            {title: "The most expensive item $$$", image: "https://images.pexels.com/photos/32167349/pexels-photo-32167349.jpeg", impact:                                                [10,1,0,1,3,1,2,2,0,0]},
-            {title: "The best sounding thing after reading the whole menu front to back 5 times", image: "https://images.pexels.com/photos/313700/pexels-photo-313700.jpeg", impact: [1,0,2,0,2,2,3,1,1,1]},
+            {title: "Something familiar", image: "https://images.pexels.com/photos/34014195/pexels-photo-34014195.jpeg", impact: [0,2,3,3,1,0,1,3,2,3]},
+            {title: "Something new", image: "https://images.pexels.com/photos/313700/pexels-photo-313700.jpeg", impact: [1,0,2,0,2,2,3,1,1,1]},
+            {title: "The most expensive item $$$", image: "https://images.pexels.com/photos/32167349/pexels-photo-32167349.jpeg", impact: [10,1,0,1,3,1,2,2,0,0]},
+            {title: "The restaurant's specialty", image: "https://images.pexels.com/photos/7594058/pexels-photo-7594058.jpeg", impact: [1,3,1,2,0,1,1,2,3,2]},
         ]
     },
     {
@@ -50,9 +50,9 @@ export const quiz1Questions: Question[] = [
         title: "Pick the inspirational phrase that speaks to you.",
         answers: [
             {title: "Your only limit is your mind", image: "https://images.pexels.com/photos/449751/pexels-photo-449751.jpeg", impact:                   [1,3,2,1,2,3,0,1,2,2]}, //limit
-            {title: "Every minute is a chance to change the world", image: "https://images.pexels.com/photos/36463969/pexels-photo-36463969.jpeg", impact:   [0,2,0,0,3,1,3,3,0,3]}, //change
+            {title: "In a world where you can be anything, be kind", image: "https://images.pexels.com/photos/36463969/pexels-photo-36463969.jpeg", impact:   [0,2,0,0,3,1,3,3,0,3]}, //change
             {title: "Life is too short not to take risks", image: "https://images.pexels.com/photos/11633856/pexels-photo-11633856.jpeg", impact:            [2,0,1,2,0,0,2,2,3,0]}, //risk
-            {title: "When in doubt, look intelligent", image: "https://images.pexels.com/photos/9572709/pexels-photo-9572709.jpeg", impact:                [3,1,3,2,1,2,1,0,1,1]}  //look intelligent
+            {title: "Everything is hard before it gets easy", image: "https://images.pexels.com/photos/9572709/pexels-photo-9572709.jpeg", impact:                [3,1,3,2,1,2,1,0,1,1]}  //look intelligent
         ]
     },
     {
