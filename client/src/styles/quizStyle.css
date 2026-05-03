@@ -113,5 +113,20 @@
   font-size: 20px;
   padding: 20px;
   margin: 0;
+}
 
+.quizTitleText {
+  font-size: 40px;
+}
+
+.quizTitle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sparkle {
+  width: 30px;
+  padding: 10px;
 }

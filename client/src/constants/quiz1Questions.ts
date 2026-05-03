@@ -2,7 +2,7 @@ import { Question } from "../pages/Quiz/quizTypes";
 
 export const quiz1Questions: Question[] = [
   {
-        title: "Choose a spirit animal the represents you best",
+        title: "Choose a spirit animal",
         answers: [
             {title: "Golden retriever", image: "https://images.pexels.com/photos/13565225/pexels-photo-13565225.jpeg", impact:  [1,3,2,1,3,2,2,1,3,0]},
             {title: "Raccoon", image: "https://images.pexels.com/photos/10767665/pexels-photo-10767665.jpeg", impact:           [0,1,3,3,0,0,1,0,2,2]},
@@ -29,12 +29,12 @@ export const quiz1Questions: Question[] = [
         ]
     },
     {
-        title: "Pick you ideal weeked",
+        title: "Pick a weekend activity",
         answers: [
             {title: "Go on a spontaneous adventure", image: "https://images.pexels.com/photos/9507450/pexels-photo-9507450.jpeg", impact:          [3,0,0,3,1,2,3,3,2,0]}, //adventure
             {title: "Solo recharge day", image: "https://images.pexels.com/photos/6724446/pexels-photo-6724446.jpeg", impact:                      [1,3,2,0,0,1,0,2,0,2]}, //solo
             {title: "Hangout with a close group of friends", image: "https://images.pexels.com/photos/7954570/pexels-photo-7954570.jpeg", impact:  [2,2,1,2,2,3,1,1,3,1]}, //friends
-            {title: "Sleep through the whole weekend", image: "https://images.pexels.com/photos/7445175/pexels-photo-7445175.jpeg", impact:        [0,1,3,1,3,0,2,0,1,3]} //sleep
+            {title: "Sleep", image: "https://images.pexels.com/photos/7445175/pexels-photo-7445175.jpeg", impact:        [0,1,3,1,3,0,2,0,1,3]} //sleep
         ]
     },
       {
@@ -56,7 +56,7 @@ export const quiz1Questions: Question[] = [
         ]
     },
     {
-        title: "Which season feels most 'you'?",
+        title: "Which season feels most you?",
         answers: [
             {title: "Summer", image: "https://images.pexels.com/photos/1152359/pexels-photo-1152359.jpeg", impact: [3,3,0,2,1,1,3,3,2,0]},
             {title: "Spring", image: "https://images.pexels.com/photos/31837400/pexels-photo-31837400.jpeg", impact: [1,2,1,0,2,3,1,2,3,1]},

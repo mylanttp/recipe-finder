@@ -49,7 +49,11 @@ export default function Quiz() {
     }
 
     return <div>
-        <h2 id="quizTop">Which Recipe Are You?</h2>
+        <div className="quizTitle">
+            <img className="sparkle" src="/blueStar.svg" alt="blueStar"></img>
+            <h2 className="quizTitleText"id="quizTop">Which Recipe Are You?</h2>
+            <img className="sparkle" src="/blueStar.svg" alt="blueStar"></img>
+        </div>
         <button onClick={() => navigate('/')}>back to search</button>
         <div className="quizDisplay">
             {quiz1Questions.map((question: Question, index: number) => (

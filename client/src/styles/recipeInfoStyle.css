@@ -8,7 +8,7 @@
     margin-top: 10px;
 }
 
-.overview, .secondInfoBox{
+.overviewBox, .secondInfoBox{
     background-color: #FFFFFF;
     border-radius: 10px;
     padding: 1rem;
@@ -19,6 +19,10 @@
     gap: 1rem;
 }
 
+.overviewBox {
+    flex-direction: column;
+}
+
 .secondInfoBox {
     gap: 0rem;
 }
@@ -27,6 +31,10 @@
     display: flex;
     gap: 2rem;
     align-items: flex-start;
+}
+
+.summaryText {
+    padding: 10px;
 }
 
 .ingredients, .directions {
@@ -47,7 +55,17 @@
 
 .ingredientsTitle, .directionsTitle {
     font-size: 25px;
+}
+
+.ingredientsTitleBox, .directionsTitleBox {
     margin-top: 1px;
+    display: flex;
+    flex-direction: row;
+}
+
+.apple{
+    width: 30px;
+    margin-right: 5px;
 }
 
 .directionsList {
@@ -85,7 +103,7 @@
 }
 
 .overviewTitle {
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 700;
     margin: 0;
     margin-top: 20px;
@@ -192,6 +210,8 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+
 
 }
 

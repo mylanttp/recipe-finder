@@ -25,6 +25,7 @@ export default function MyMeals() {
 
             <div className="rightMeals">
                 <div className="mealsSubtext">
+                    <img className="lemon" src="/lemon.svg" alt="lemon"></img>
                     <h2>MyMeals Page</h2>
                     <button onClick={() => navigate('/')}>back to search</button>
                 </div>

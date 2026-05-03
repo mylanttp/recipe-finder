@@ -12,7 +12,7 @@ import { testRecipeList } from "../../constants/testRecipeList";
 function Search() {
     const context = useContext(RecipeContext);
     const [search, setSearch] = useState("")
-    const [recipeList, setRecipeList] = useState([] as Recipe[])
+    const [recipeList, setRecipeList] = useState(testRecipeList)
     const navigate = useNavigate()
     
     const enterSearch = () => {
@@ -29,6 +29,7 @@ function Search() {
     return (
         <div className="searchPage">
             <div className="filtersContainer">
+                <img className="leaves" src="/leaves.svg" alt="leaves" />
                 <p className="filterTitle">Filter your search</p>
                 <div className="intoleranceSection">
                     <Intolerances databaseSave={false}/>
@@ -54,7 +55,8 @@ function Search() {
                 </div>
 
                 <hr className="divider" />
-                <RecipeDisplay recipeList={recipeList.length === 0? testRecipeList : recipeList}/>
+                {recipeList[0].id === 637440 && <p className="browseText">Browse top recipes!</p>}
+                <RecipeDisplay recipeList={recipeList}/>
             </div>
         </div>
     );

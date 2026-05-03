@@ -89,3 +89,11 @@
     padding: 4px 8px;
     gap: 8px;
 }
+
+.mealsSubtext h2 {
+    font-size: 40px;
+}
+
+.lemon {
+    width: 50px;
+}

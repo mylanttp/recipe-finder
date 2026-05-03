@@ -61,14 +61,13 @@
 .filtersContainer{
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 0;
     flex-direction: column;
     width: 250px;
     flex-shrink: 0;
     padding: 1rem;
     flex-wrap: wrap;
     font-weight: 600;
-
 }
 
 .filterTitle{
@@ -79,6 +78,11 @@
     padding: 4px 12px;
     box-shadow: 2px 2px 0px black;
     background-color: #dbc1f6;
+    margin-top: 0px;
+}
+
+.leaves {
+    width: 70px;
 }
 
 .dietSection {
@@ -128,4 +132,10 @@
     width: fit-content;
     padding: 4px 8px;
     gap: 8px;
+}
+
+.browseText{
+    margin-top: 0px;
+    margin-bottom: 30px;
+    font-size: 20px;
 }
