@@ -30,7 +30,7 @@ function Search() {
         <div className="searchPage">
             <div className="filtersContainer">
                 <img className="leaves" src="/leaves.svg" alt="leaves" />
-                <p className="filterTitle">Filter your search</p>
+                <p className="filterTitle">Add filters to your search</p>
                 <div className="intoleranceSection">
                     <Intolerances databaseSave={false}/>
                 </div>
