@@ -55,8 +55,12 @@ function Search() {
                 </div>
 
                 <hr className="divider" />
-                {recipeList[0].id === 637440 && <p className="browseText">Browse top recipes!</p>}
-                <RecipeDisplay recipeList={recipeList}/>
+                {recipeList.length === 0? <p className="browseText">No recipes matched your search :(</p> :
+                <>
+                    {recipeList[0]?.id === 637440 && <p className="browseText">Browse top recipes!</p>}
+                    <RecipeDisplay recipeList={recipeList}/>
+                </>
+                }
             </div>
         </div>
     );
