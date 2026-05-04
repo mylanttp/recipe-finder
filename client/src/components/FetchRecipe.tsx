@@ -16,7 +16,7 @@ const toRecipeList = (dataList: apiResponse): Recipe[] => {
 }
 
 export const fetchRecipeList = ({search, diet, intolerances}: Props): Promise<Recipe[]> => {
-  return fetch(`http://localhost:8080/api/search?q=${encodeURIComponent(search)}
+  return fetch(`${import.meta.env.VITE_API_URL}/api/search?q=${encodeURIComponent(search)}
                 &diet=${encodeURIComponent(diet.join(','))}
                 &intolerances=${encodeURIComponent(intolerances.join(','))}`)
   .then((response) => {

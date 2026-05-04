@@ -6,7 +6,7 @@ export const getDiets = async (): Promise<string[]> => {
     const currentUser = auth.currentUser;
     const token = currentUser ? await currentUser.getIdToken() : null;
     
-    return fetch("http://localhost:8080/get/diets", {
+    return fetch(`${import.meta.env.VITE_API_URL}/get/diets`, {
         method: "GET",
         headers: {
             ...(token && { "Authorization": `Bearer ${token}` }),
@@ -29,7 +29,7 @@ export const getIntolerances = async (): Promise<string[]> => {
     const currentUser = auth.currentUser;
     const token = currentUser ? await currentUser.getIdToken() : null;
     
-    return fetch("http://localhost:8080/get/intolerances", {
+    return fetch(`${import.meta.env.VITE_API_URL}/get/intolerances`, {
         method: "GET",
         headers: {
             ...(token && { "Authorization": `Bearer ${token}` }),
@@ -52,7 +52,7 @@ export const updateDiets = async (diet: string, action: string) => {
     const currentUser = auth.currentUser;
     const token = currentUser ? await currentUser.getIdToken() : null;
     
-    return fetch("http://localhost:8080/update/diets", {
+    return fetch(`${import.meta.env.VITE_API_URL}/update/diets`, {
         method: "PUT",
         headers: {
             ...(token && { "Authorization": `Bearer ${token}` }),
@@ -68,7 +68,7 @@ export const updateIntolerances = async (intolerance: string, action: string) =>
     const currentUser = auth.currentUser;
     const token = currentUser ? await currentUser.getIdToken() : null;
     
-    return fetch("http://localhost:8080/update/intolerances", {
+    return fetch(`${import.meta.env.VITE_API_URL}/update/intolerances`, {
         method: "PUT",
         headers: {
             ...(token && { "Authorization": `Bearer ${token}` }),

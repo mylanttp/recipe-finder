@@ -16,7 +16,7 @@ export const RecipeInfo = () => {
     }, [recipe]);
 
     const fetchRecipeInfo = (recipe: Recipe): Promise<RecipeInfoType> => {
-        return fetch(`http://localhost:8080/api/info?q=${encodeURIComponent(recipe.id)}`)
+        return fetch(`${import.meta.env.VITE_API_URL}/api/info?q=${encodeURIComponent(recipe.id)}`)
         .then((response) => {
             return response.json();
         })

@@ -32,7 +32,7 @@ function App () {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             if (user) { //if a user is logged in, set their saved meals, diets, & intolerances from the DB
                 const token = await user.getIdToken();
-                const res = await fetch("http://localhost:8080/recipes", {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/recipes`, {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();
@@ -60,7 +60,7 @@ function App () {
         const currentUser = auth.currentUser;
         const token = currentUser ? await currentUser.getIdToken() : null;
 
-        return fetch("http://localhost:8080/add", {
+        return fetch(`${import.meta.env.VITE_API_URL}/add`, {
             method: "POST",
             headers: {
                 ...(token && {"Authorization": `Bearer ${token}`}),
@@ -86,7 +86,7 @@ function App () {
         const currentUser = auth.currentUser;
         const token = currentUser ? await currentUser.getIdToken() : null;
         
-        return fetch("http://localhost:8080/remove", {
+        return fetch(`${import.meta.env.VITE_API_URL}/remove`, {
             method: "DELETE",
             headers: {
                 ...(token && { "Authorization": `Bearer ${token}` }),
