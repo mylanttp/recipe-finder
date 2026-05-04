@@ -64,7 +64,7 @@ return <div>
                                     Serves {recipeInfo.servings}
                                 </div>
                                 <div className="price">
-                                    Price Per Serving: ${((recipeInfo.pricePerServing)/(recipeInfo.servings)/10).toFixed(2)}
+                                    Health Score: {recipeInfo.healthScore}/100
                                 </div>
                             </div>
                             <button className="addRemoveButton" onClick={addOrRemove}>{recipe.saved? "Already Saved to recipes" : "Save to your recipes"}</button>

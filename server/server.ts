@@ -24,7 +24,7 @@ app.get("/api/search", (req, res) => {
   const diet = req.query.diet
   const intolerances = req.query.intolerances
 
-  let url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=20`
+  let url = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&number=21`
   if(diet){url+=`&diet=${diet}`};
   if(intolerances){url+=`&intolerances=${intolerances}`}
 
