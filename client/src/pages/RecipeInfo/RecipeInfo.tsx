@@ -64,7 +64,7 @@ return <div>
                                     Serves {recipeInfo.servings}
                                 </div>
                                 <div className="price">
-                                    Health Score: {recipeInfo.healthScore}/100
+                                    Health Score: {recipeInfo.healthScore}
                                 </div>
                             </div>
                             <button className="addRemoveButton" onClick={addOrRemove}>{recipe.saved? "Already Saved to recipes" : "Save to your recipes"}</button>
