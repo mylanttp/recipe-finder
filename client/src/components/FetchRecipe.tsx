@@ -16,9 +16,7 @@ const toRecipeList = (dataList: apiResponse): Recipe[] => {
 }
 
 export const fetchRecipeList = ({search, diet, intolerances}: Props): Promise<Recipe[]> => {
-  return fetch(`${import.meta.env.VITE_API_URL}/api/search?q=${encodeURIComponent(search)}
-                &diet=${encodeURIComponent(diet.join(','))}
-                &intolerances=${encodeURIComponent(intolerances.join(','))}`)
+  return fetch(`${import.meta.env.VITE_API_URL}/api/search?q=${encodeURIComponent(search)}&diet=${encodeURIComponent(diet.join(','))}&intolerances=${encodeURIComponent(intolerances.join(','))}`)
   .then((response) => {
       console.log("api status (client):", response.status);
       return response.json();
@@ -28,4 +26,3 @@ export const fetchRecipeList = ({search, diet, intolerances}: Props): Promise<Re
     return toRecipeList(data)
   })
 };
-
