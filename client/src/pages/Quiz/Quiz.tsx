@@ -13,14 +13,14 @@ export default function Quiz() {
     const questionRefs = useRef<(HTMLDivElement | null)[]>([]);
 
     useEffect(() => { // when the quiz is finished scroll down to the bottom
-    if (finishedQuiz) { 
-        const element = document.getElementById("quizBottom");
-        if (element) { 
-            const top = element.getBoundingClientRect().top + window.scrollY - 750;
-            window.scrollTo({ behavior: 'smooth', top });
+        if (finishedQuiz) { 
+            const element = document.getElementById("quizBottom");
+            if (element) { 
+                const top = element.getBoundingClientRect().top + window.scrollY - 750;
+                window.scrollTo({ behavior: 'smooth', top });
+            }
         }
-    }
-}, [finishedQuiz]); //runs when the state of finishedQuiz changes
+    }, [finishedQuiz]); //runs when the state of finishedQuiz changes
 
     const resetQuiz = () => {
         setResults([0,0,0,0,0,0,0,0,0,0])

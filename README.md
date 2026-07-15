@@ -1,10 +1,19 @@
-# recipeFinder
+# 🍽️ Recipe Finder
 
-Recipe Finder is a web application that lets users search for recipes (from Spoonacular API), save and remove recipes to a personal meal list (Stored on Firestore database), add filters based on diets and intolerances, and see more information for each recipe. Users can log in through Google for their information to persist across sessions. There is also a fun quiz for users to see "which recipe they are" that matches their personality to a recipe.
+A web app that lets users search, filter, and save recipes to a personal meal list. Can't decide? take a fun quiz to see "Which recipe you are?" that matches personality to recipe.
 
 The server is deployed on Google Cloud Run and the client is deployed on Vercel
 Client: https://recipe-finder-ashen-eta.vercel.app/
 Server: https://recipe-finder-server-803133171696.us-central1.run.app 
+
+## Key Features
+
+- **Search** for recipes from Spoonacular API
+- "Which Recipe Are You?" **quiz** matches a recipe based on the chosen answers
+- **Save and remove** recipes to "MyMeals" list (Stored on Firestore database)
+- Add personal diets and intolerances that persist on the Search page
+- See more information page for each recipe
+- **Log in** to save information across sessions
 
 ## Environment variables
 

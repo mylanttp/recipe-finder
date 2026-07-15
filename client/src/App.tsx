@@ -10,7 +10,6 @@ import Header from "./components/Header";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDiets, getIntolerances } from "./components/HandlePreferences";
 import { RecipeInfo } from "./pages/RecipeInfo/RecipeInfo";
-import "./index.css"
 
 function App () {
     const [myRecipeList, setMyRecipeList] = useState<Recipe []>([])
