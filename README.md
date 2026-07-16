@@ -1,25 +1,23 @@
-# 🍽️ Recipe Finder
+# 🍽️ Recipe Finder (Vite + React + TS)
 
 A web app that lets users search, filter, and save recipes to a personal meal list. Can't decide? take a fun quiz to see "Which recipe you are?" that matches personality to recipe.
 
-The server is deployed on Google Cloud Run and the client is deployed on Vercel
-Client: https://recipe-finder-ashen-eta.vercel.app/
-Server: https://recipe-finder-server-803133171696.us-central1.run.app 
+Try the live application: https://recipe-finder-ashen-eta.vercel.app/
+<img src="./client/public/search.png" width="500" alt="Recipe Search Screen">
+
+## Tech Stack
+
+- **Frontend:** React, TypeScript, CSS
+- **Database & Auth:** Firebase Firestore, Google OAuth
+- **DevOps & Cloud:** Docker, Google Cloud Platform (GCP)
+- **Deployment:** Vercel
 
 ## Key Features
 
-- **Search** for recipes from Spoonacular API
-- "Which Recipe Are You?" **quiz** matches a recipe based on the chosen answers
-- **Save and remove** recipes to "MyMeals" list (Stored on Firestore database)
-- Add personal diets and intolerances that persist on the Search page
-- See more information page for each recipe
-- **Log in** to save information across sessions
-
-## Environment variables
-
-Server: SPOONACULAR_API_KEY=your_spoonacular_api_key
-
-Client: VITE_API_URL=server_url (http://localhost:8080 for local host or Google cloud url, https://recipe-finder-server-803133171696.us-central1.run.app, for deployed)
+- **Smart Search:** Filter recipes from Spoonacular API by diets and intolerances
+- **Personality Quiz:** A fun "Which Recipe Are You?" quiz that gives you a recipe based on chosen answers
+- **Saved Meals:** Save and remove recipes to a custom "MyMeals" list
+- **User Profiles:** Secure Google login to save preferences across sessions
 
 ## Set up instructions
 
@@ -27,6 +25,12 @@ Client: VITE_API_URL=server_url (http://localhost:8080 for local host or Google 
 1. Clone the repository
 2. Set up the server (see below)
 3. Set up the client (see below)
+
+## Environment variables
+
+Server: SPOONACULAR_API_KEY=your_spoonacular_api_key
+
+Client: VITE_API_URL=server_url (http://localhost:8080 for local host or Google Cloud url, https://recipe-finder-server-803133171696.us-central1.run.app, for deployed)
 
 ## How to run the client and server
 
