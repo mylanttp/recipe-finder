@@ -2,8 +2,9 @@
 
 A web app that lets users search, filter, and save recipes to a personal meal list. Can't decide? take a fun quiz to see "Which recipe you are?" that matches personality to recipe.
 
-Try the live application: https://recipe-finder-ashen-eta.vercel.app/
-<img src="./client/public/search.png" width="500" alt="Recipe Search Screen">
+Live Application: https://recipe-finder-ashen-eta.vercel.app/
+
+<img src="./client/public/recipe-finder-screenshot.png" width="500" alt="Recipe Search Screen">
 
 ## Tech Stack
 
@@ -22,15 +23,14 @@ Try the live application: https://recipe-finder-ashen-eta.vercel.app/
 ## Set up instructions
 
 (Requires Node.js, pnpm, Spoonaculary API key, Firebase project with Firestore and Authentication enabled, and Firebase service account key)
+
+Environment variables needed:
+- SPOONACULAR_API_KEY=your_spoonacular_api_key
+- VITE_API_URL=server_url
+
 1. Clone the repository
 2. Set up the server (see below)
 3. Set up the client (see below)
-
-## Environment variables
-
-Server: SPOONACULAR_API_KEY=your_spoonacular_api_key
-
-Client: VITE_API_URL=server_url (http://localhost:8080 for local host or Google Cloud url, https://recipe-finder-server-803133171696.us-central1.run.app, for deployed)
 
 ## How to run the client and server
 
