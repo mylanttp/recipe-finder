@@ -4,7 +4,7 @@ A web app that lets users search, filter, and save recipes to a personal meal li
 
 Live Application: https://recipe-finder-ashen-eta.vercel.app/
 
-<img src="./client/public/recipe-finder-screenshot.png" width="500" alt="Recipe Search Screen">
+<img src="./client/public/recipe-finder-screenshot.png" width="700" alt="Recipe Search Screen">
 
 ## Tech Stack
 
